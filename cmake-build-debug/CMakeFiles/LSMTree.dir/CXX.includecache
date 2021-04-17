@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+E:/Workspace_CLion/LSMTree/Header/SkipList.h
+stdint.h
+-
+string
+-
+vector
+-
+
+E:/Workspace_CLion/LSMTree/Source/SkipList.cpp
+../Header/SkipList.h
+E:/Workspace_CLion/LSMTree/Header/SkipList.h
+

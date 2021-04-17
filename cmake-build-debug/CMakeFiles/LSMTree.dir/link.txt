@@ -1,0 +1,3 @@
+"G:\CLion\CLion 2021.1\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\LSMTree.dir/objects.a
+D:\MinGW_win64\mingw64\bin\ar.exe cr CMakeFiles\LSMTree.dir/objects.a @CMakeFiles\LSMTree.dir\objects1.rsp
+D:\MinGW_win64\mingw64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\LSMTree.dir/objects.a -Wl,--no-whole-archive -o LSMTree.exe -Wl,--out-implib,libLSMTree.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\LSMTree.dir\linklibs.rsp
