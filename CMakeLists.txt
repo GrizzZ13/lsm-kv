@@ -20,4 +20,4 @@ file(GLOB SOURCES
 #        Test/persistence.cc
         )
 
-add_executable(LSMTree Test/correctness.cc ${SOURCE_FILES} ${SOURCES})
+add_executable(LSMTree Test/correctness.cc ${SOURCE_FILES} ${SOURCES} Source/SSTable.cpp Header/SSTable.h)

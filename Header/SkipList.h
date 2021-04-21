@@ -24,6 +24,11 @@ class SkipList {
 private:
     Node *head;
 
+    uint32_t size; /* size of corresponding SSTable, including header, bloom filter and data */
+    uint64_t count; /* number of elements */
+    uint64_t minKey;
+    uint64_t maxKey;
+
 public:
     SkipList();
 
@@ -31,7 +36,7 @@ public:
 
     void put(uint64_t key, const std::string &s);
 
-    Node*  getNode(uint64_t key);
+    Node*  getNode(uint64_t key) const;
 
     bool del(uint64_t key);
 
@@ -39,7 +44,7 @@ public:
 
     std::string returnVal(const Node* ptr) const;
 
-    std::string get(uint64_t key);
+    std::string get(uint64_t key) const;
 };
 
 

@@ -141,6 +141,33 @@ LSMTree/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/build
 .PHONY : LSMTree/fast
 
+Source/SSTable.obj: Source/SSTable.cpp.obj
+
+.PHONY : Source/SSTable.obj
+
+# target to build an object file
+Source/SSTable.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/SSTable.cpp.obj
+.PHONY : Source/SSTable.cpp.obj
+
+Source/SSTable.i: Source/SSTable.cpp.i
+
+.PHONY : Source/SSTable.i
+
+# target to preprocess a source file
+Source/SSTable.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/SSTable.cpp.i
+.PHONY : Source/SSTable.cpp.i
+
+Source/SSTable.s: Source/SSTable.cpp.s
+
+.PHONY : Source/SSTable.s
+
+# target to generate assembly for a file
+Source/SSTable.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/SSTable.cpp.s
+.PHONY : Source/SSTable.cpp.s
+
 Source/SkipList.obj: Source/SkipList.cpp.obj
 
 .PHONY : Source/SkipList.obj
@@ -231,6 +258,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... LSMTree
+	@echo ... Source/SSTable.obj
+	@echo ... Source/SSTable.i
+	@echo ... Source/SSTable.s
 	@echo ... Source/SkipList.obj
 	@echo ... Source/SkipList.i
 	@echo ... Source/SkipList.s
