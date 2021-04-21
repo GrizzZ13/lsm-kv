@@ -6,17 +6,35 @@
 
 #IncludeRegexTransform: 
 
+E:/Workspace_CLion/LSMTree/Header/BloomFilter.h
+stdint.h
+-
+string.h
+-
+
 E:/Workspace_CLion/LSMTree/Header/MurmurHash3.h
 stdlib.h
 -
 stdint.h
 -
 
+E:/Workspace_CLion/LSMTree/Header/Pair.h
+stdint.h
+-
+
 E:/Workspace_CLion/LSMTree/Header/SSTable.h
 stdint.h
 -
-MurmurHash3.h
-E:/Workspace_CLion/LSMTree/Header/MurmurHash3.h
+string.h
+-
+string
+-
+BloomFilter.h
+E:/Workspace_CLion/LSMTree/Header/BloomFilter.h
+Pair.h
+E:/Workspace_CLion/LSMTree/Header/Pair.h
+SkipList.h
+E:/Workspace_CLion/LSMTree/Header/SkipList.h
 
 E:/Workspace_CLion/LSMTree/Header/SkipList.h
 stdint.h
@@ -25,50 +43,20 @@ string
 -
 vector
 -
-
-E:/Workspace_CLion/LSMTree/Header/kvstore.h
-kvstore_api.h
-E:/Workspace_CLion/LSMTree/Header/kvstore_api.h
-SkipList.h
-E:/Workspace_CLion/LSMTree/Header/SkipList.h
-
-E:/Workspace_CLion/LSMTree/Header/kvstore_api.h
-cstdint
--
-string
--
+BloomFilter.h
+E:/Workspace_CLion/LSMTree/Header/BloomFilter.h
+Pair.h
+E:/Workspace_CLion/LSMTree/Header/Pair.h
 
 E:/Workspace_CLion/LSMTree/Source/SSTable.cpp
 ../Header/SSTable.h
 E:/Workspace_CLion/LSMTree/Header/SSTable.h
+../Header/MurmurHash3.h
+E:/Workspace_CLion/LSMTree/Header/MurmurHash3.h
 
 E:/Workspace_CLion/LSMTree/Source/SkipList.cpp
 ../Header/SkipList.h
 E:/Workspace_CLion/LSMTree/Header/SkipList.h
-
-E:/Workspace_CLion/LSMTree/Source/kvstore.cc
-../Header/kvstore.h
-E:/Workspace_CLion/LSMTree/Header/kvstore.h
-string
--
-
-E:/Workspace_CLion/LSMTree/Test/correctness.cc
-iostream
--
-cstdint
--
-string
--
-test.h
-E:/Workspace_CLion/LSMTree/Test/test.h
-
-E:/Workspace_CLion/LSMTree/Test/test.h
-iostream
--
-cstdint
--
-string
--
-../Header/kvstore.h
-E:/Workspace_CLion/LSMTree/Header/kvstore.h
+../Header/MurmurHash3.h
+E:/Workspace_CLion/LSMTree/Header/MurmurHash3.h
 

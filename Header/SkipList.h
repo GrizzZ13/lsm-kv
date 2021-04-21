@@ -9,6 +9,9 @@
 #include <string>
 #include <vector>
 
+#include "BloomFilter.h"
+#include "Pair.h"
+
 struct Node {
     Node *right, *down;
     uint64_t key;
@@ -45,7 +48,16 @@ public:
     std::string returnVal(const Node* ptr) const;
 
     std::string get(uint64_t key) const;
-};
 
+    void toSSTable(BloomFilter *bf, Pair *pairs, std::string *data) const;
+
+    uint32_t getSize() const;
+
+    uint64_t getCount() const;
+
+    uint64_t getMinKey() const;
+
+    uint64_t getMaxKey() const;
+};
 
 #endif //LSMTREE_SKIPLIST_H

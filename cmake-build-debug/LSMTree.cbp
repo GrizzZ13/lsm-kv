@@ -80,7 +80,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="E:/Workspace_CLion/LSMTree/Header/BloomFilter.h">
+			<Option target="LSMTree"/>
+		</Unit>
 		<Unit filename="E:/Workspace_CLion/LSMTree/Header/MurmurHash3.h">
+			<Option target="LSMTree"/>
+		</Unit>
+		<Unit filename="E:/Workspace_CLion/LSMTree/Header/Pair.h">
 			<Option target="LSMTree"/>
 		</Unit>
 		<Unit filename="E:/Workspace_CLion/LSMTree/Header/SSTable.h">
@@ -96,6 +102,12 @@
 			<Option target="LSMTree"/>
 		</Unit>
 		<Unit filename="E:/Workspace_CLion/LSMTree/Header/utils.h">
+			<Option target="LSMTree"/>
+		</Unit>
+		<Unit filename="E:/Workspace_CLion/LSMTree/Source/BloomFilter.cpp">
+			<Option target="LSMTree"/>
+		</Unit>
+		<Unit filename="E:/Workspace_CLion/LSMTree/Source/Pair.cpp">
 			<Option target="LSMTree"/>
 		</Unit>
 		<Unit filename="E:/Workspace_CLion/LSMTree/Source/SSTable.cpp">

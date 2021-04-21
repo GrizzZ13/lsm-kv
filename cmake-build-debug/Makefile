@@ -141,6 +141,60 @@ LSMTree/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/build
 .PHONY : LSMTree/fast
 
+Source/BloomFilter.obj: Source/BloomFilter.cpp.obj
+
+.PHONY : Source/BloomFilter.obj
+
+# target to build an object file
+Source/BloomFilter.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/BloomFilter.cpp.obj
+.PHONY : Source/BloomFilter.cpp.obj
+
+Source/BloomFilter.i: Source/BloomFilter.cpp.i
+
+.PHONY : Source/BloomFilter.i
+
+# target to preprocess a source file
+Source/BloomFilter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/BloomFilter.cpp.i
+.PHONY : Source/BloomFilter.cpp.i
+
+Source/BloomFilter.s: Source/BloomFilter.cpp.s
+
+.PHONY : Source/BloomFilter.s
+
+# target to generate assembly for a file
+Source/BloomFilter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/BloomFilter.cpp.s
+.PHONY : Source/BloomFilter.cpp.s
+
+Source/Pair.obj: Source/Pair.cpp.obj
+
+.PHONY : Source/Pair.obj
+
+# target to build an object file
+Source/Pair.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/Pair.cpp.obj
+.PHONY : Source/Pair.cpp.obj
+
+Source/Pair.i: Source/Pair.cpp.i
+
+.PHONY : Source/Pair.i
+
+# target to preprocess a source file
+Source/Pair.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/Pair.cpp.i
+.PHONY : Source/Pair.cpp.i
+
+Source/Pair.s: Source/Pair.cpp.s
+
+.PHONY : Source/Pair.s
+
+# target to generate assembly for a file
+Source/Pair.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/Pair.cpp.s
+.PHONY : Source/Pair.cpp.s
+
 Source/SSTable.obj: Source/SSTable.cpp.obj
 
 .PHONY : Source/SSTable.obj
@@ -258,6 +312,12 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... LSMTree
+	@echo ... Source/BloomFilter.obj
+	@echo ... Source/BloomFilter.i
+	@echo ... Source/BloomFilter.s
+	@echo ... Source/Pair.obj
+	@echo ... Source/Pair.i
+	@echo ... Source/Pair.s
 	@echo ... Source/SSTable.obj
 	@echo ... Source/SSTable.i
 	@echo ... Source/SSTable.s
