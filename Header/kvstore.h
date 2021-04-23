@@ -1,14 +1,21 @@
 #pragma once
 
+#include <vector>
+
 #include "kvstore_api.h"
 #include "SkipList.h"
+#include "SSTable.h"
+#include "CacheList.h"
 
 class KVStore : public KVStoreAPI {
 	// You can add your implementation here
 private:
     SkipList memTable;
+    SSTable *ssTable;
+    uint64_t countInDisk;
+    std::vector<CacheList*> storage;
 public:
-    __attribute__((unused)) KVStore(const std::string &dir);
+    KVStore(const std::string &dir);
 
 	~KVStore();
 

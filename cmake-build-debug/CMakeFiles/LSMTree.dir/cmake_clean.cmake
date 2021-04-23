@@ -1,9 +1,10 @@
 file(REMOVE_RECURSE
   "CMakeFiles/LSMTree.dir/Source/BloomFilter.cpp.obj"
+  "CMakeFiles/LSMTree.dir/Source/CacheList.cpp.obj"
   "CMakeFiles/LSMTree.dir/Source/Pair.cpp.obj"
   "CMakeFiles/LSMTree.dir/Source/SSTable.cpp.obj"
   "CMakeFiles/LSMTree.dir/Source/SkipList.cpp.obj"
-  "CMakeFiles/LSMTree.dir/Source/kvstore.cc.obj"
+  "CMakeFiles/LSMTree.dir/Source/kvstore.cpp.obj"
   "CMakeFiles/LSMTree.dir/Test/correctness.cc.obj"
   "LSMTree.exe"
   "LSMTree.exe.manifest"

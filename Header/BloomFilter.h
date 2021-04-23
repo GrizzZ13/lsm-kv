@@ -7,17 +7,21 @@
 
 #include <stdint.h>
 #include <string.h>
+#include <fstream>
 
 struct BloomFilter{
     uint32_t bitset[2560]; /* bitset with length of 81920 bits */
 
     BloomFilter();
 
-    bool match128(const uint32_t* hashVal) const; /* hashVal is an array with two uint64_t element */
-    void set128(const uint32_t* hashVal);
-
     bool match32(uint32_t val) const;
     void set32(uint32_t val);
+
+    bool matchKey(uint64_t key) const;
+    void setKey(uint64_t key);
+
+    void writeToFile(std::ofstream &ofs) const;
+    void copyBF(BloomFilter *out) const;
 };
 
 #endif //LSMTREE_BLOOMFILTER_H

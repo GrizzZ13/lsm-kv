@@ -9,15 +9,24 @@ file(GLOB SOURCES
         Header/MurmurHash3.h
 
         Header/kvstore.h
-        Source/kvstore.cc
+        Source/kvstore.cpp
 
         Header/SkipList.h
         Source/SkipList.cpp
 
+        Source/SSTable.cpp
+        Header/SSTable.h
+        Source/BloomFilter.cpp
+        Header/BloomFilter.h
+        Source/Pair.cpp
+        Header/Pair.h
+        Source/kvstore.cpp
+        Source/CacheList.cpp
+        Header/CacheList.h
 #===========================Test==========================#
         Test/test.h
         Test/correctness.cc
 #        Test/persistence.cc
         )
 
-add_executable(LSMTree Test/correctness.cc ${SOURCE_FILES} ${SOURCES} Source/SSTable.cpp Header/SSTable.h Source/BloomFilter.cpp Header/BloomFilter.h Source/Pair.cpp Header/Pair.h)
+add_executable(LSMTree Test/correctness.cc ${SOURCE_FILES} ${SOURCES})

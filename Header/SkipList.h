@@ -32,16 +32,15 @@ private:
     uint64_t minKey;
     uint64_t maxKey;
 
+    Node*  getNode(uint64_t key) const;
 public:
     SkipList();
 
     ~SkipList();
 
-    void put(uint64_t key, const std::string &s);
+    bool put(uint64_t key, const std::string &s);
 
-    Node*  getNode(uint64_t key) const;
-
-    bool del(uint64_t key);
+    void del(uint64_t key);
 
     void reset();
 

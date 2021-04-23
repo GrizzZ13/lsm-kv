@@ -168,6 +168,33 @@ Source/BloomFilter.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/BloomFilter.cpp.s
 .PHONY : Source/BloomFilter.cpp.s
 
+Source/CacheList.obj: Source/CacheList.cpp.obj
+
+.PHONY : Source/CacheList.obj
+
+# target to build an object file
+Source/CacheList.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/CacheList.cpp.obj
+.PHONY : Source/CacheList.cpp.obj
+
+Source/CacheList.i: Source/CacheList.cpp.i
+
+.PHONY : Source/CacheList.i
+
+# target to preprocess a source file
+Source/CacheList.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/CacheList.cpp.i
+.PHONY : Source/CacheList.cpp.i
+
+Source/CacheList.s: Source/CacheList.cpp.s
+
+.PHONY : Source/CacheList.s
+
+# target to generate assembly for a file
+Source/CacheList.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/CacheList.cpp.s
+.PHONY : Source/CacheList.cpp.s
+
 Source/Pair.obj: Source/Pair.cpp.obj
 
 .PHONY : Source/Pair.obj
@@ -249,32 +276,32 @@ Source/SkipList.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/SkipList.cpp.s
 .PHONY : Source/SkipList.cpp.s
 
-Source/kvstore.obj: Source/kvstore.cc.obj
+Source/kvstore.obj: Source/kvstore.cpp.obj
 
 .PHONY : Source/kvstore.obj
 
 # target to build an object file
-Source/kvstore.cc.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/kvstore.cc.obj
-.PHONY : Source/kvstore.cc.obj
+Source/kvstore.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/kvstore.cpp.obj
+.PHONY : Source/kvstore.cpp.obj
 
-Source/kvstore.i: Source/kvstore.cc.i
+Source/kvstore.i: Source/kvstore.cpp.i
 
 .PHONY : Source/kvstore.i
 
 # target to preprocess a source file
-Source/kvstore.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/kvstore.cc.i
-.PHONY : Source/kvstore.cc.i
+Source/kvstore.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/kvstore.cpp.i
+.PHONY : Source/kvstore.cpp.i
 
-Source/kvstore.s: Source/kvstore.cc.s
+Source/kvstore.s: Source/kvstore.cpp.s
 
 .PHONY : Source/kvstore.s
 
 # target to generate assembly for a file
-Source/kvstore.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/kvstore.cc.s
-.PHONY : Source/kvstore.cc.s
+Source/kvstore.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/kvstore.cpp.s
+.PHONY : Source/kvstore.cpp.s
 
 Test/correctness.obj: Test/correctness.cc.obj
 
@@ -315,6 +342,9 @@ help:
 	@echo ... Source/BloomFilter.obj
 	@echo ... Source/BloomFilter.i
 	@echo ... Source/BloomFilter.s
+	@echo ... Source/CacheList.obj
+	@echo ... Source/CacheList.i
+	@echo ... Source/CacheList.s
 	@echo ... Source/Pair.obj
 	@echo ... Source/Pair.i
 	@echo ... Source/Pair.s

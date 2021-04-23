@@ -83,6 +83,9 @@
 		<Unit filename="E:/Workspace_CLion/LSMTree/Header/BloomFilter.h">
 			<Option target="LSMTree"/>
 		</Unit>
+		<Unit filename="E:/Workspace_CLion/LSMTree/Header/CacheList.h">
+			<Option target="LSMTree"/>
+		</Unit>
 		<Unit filename="E:/Workspace_CLion/LSMTree/Header/MurmurHash3.h">
 			<Option target="LSMTree"/>
 		</Unit>
@@ -107,6 +110,9 @@
 		<Unit filename="E:/Workspace_CLion/LSMTree/Source/BloomFilter.cpp">
 			<Option target="LSMTree"/>
 		</Unit>
+		<Unit filename="E:/Workspace_CLion/LSMTree/Source/CacheList.cpp">
+			<Option target="LSMTree"/>
+		</Unit>
 		<Unit filename="E:/Workspace_CLion/LSMTree/Source/Pair.cpp">
 			<Option target="LSMTree"/>
 		</Unit>
@@ -116,7 +122,7 @@
 		<Unit filename="E:/Workspace_CLion/LSMTree/Source/SkipList.cpp">
 			<Option target="LSMTree"/>
 		</Unit>
-		<Unit filename="E:/Workspace_CLion/LSMTree/Source/kvstore.cc">
+		<Unit filename="E:/Workspace_CLion/LSMTree/Source/kvstore.cpp">
 			<Option target="LSMTree"/>
 		</Unit>
 		<Unit filename="E:/Workspace_CLion/LSMTree/Test/correctness.cc">

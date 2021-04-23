@@ -27,26 +27,42 @@ SkipList::~SkipList() {
     }
 }
 
-void SkipList::put(uint64_t key, const std::string &s) {
-    // already exist
+bool SkipList::put(uint64_t key, const std::string &s) {
+    // key exists
     uint32_t oldlen;
     uint32_t newlen = s.length();
+    uint32_t tmpVal;
     Node *tmp = getNode(key);
     if(tmp){
         oldlen = tmp->val.length();
-        while(tmp){
-            tmp->val = s;
-            tmp = tmp->down;
+        tmpVal = size + newlen - oldlen;
+        if(tmpVal > 2097000){
+            while(tmp){
+                tmp->val = "~DELETED~";
+                tmp = tmp->down;
+            }
+            size = size - oldlen + 9;
+            return false;
         }
-
-        size = size + newlen - oldlen;
+        else{
+            while(tmp){
+                tmp->val = s;
+                tmp = tmp->down;
+            }
+            size = tmpVal;
+            return true;
+        }
         /* count  stays the same */
         /* minKey stays the same */
         /* maxKey stays the same */
-        return;
     }
 
-    // does not exist
+    // key does not exist
+    tmpVal = size + newlen + 12;
+    if(tmpVal > 2097000) { /* should be 2,097,000 */
+        return false;
+    }
+
     std::vector<Node*> pathList;
     Node *ptr = head;
     while(ptr){
@@ -74,7 +90,8 @@ void SkipList::put(uint64_t key, const std::string &s) {
     size = size + newlen + 12; /* data: newlen / key and offset: 12 */
     count++;
     minKey = (key < minKey) ? key : minKey;
-    maxKey = (key > maxKey) ? key : minKey;
+    maxKey = (key > maxKey) ? key : maxKey;
+    return true;
 }
 
 Node* SkipList::getNode(uint64_t key) const {
@@ -87,13 +104,13 @@ Node* SkipList::getNode(uint64_t key) const {
     return nullptr;
 }
 
-bool SkipList::del(uint64_t key) {
+void SkipList::del(uint64_t key) {
     Node *ptr = getNode(key);
     if(ptr == nullptr) {
         put(key, "~DELETED~");
-        return false; // does not exist
+        return; // does not exist
     }
-    if(ptr->val == "~DELETED~") return false; // already deleted
+    if(ptr->val == "~DELETED~") return; // already deleted
 
     uint32_t oldlen = ptr->val.length();
     while(ptr){
@@ -105,7 +122,6 @@ bool SkipList::del(uint64_t key) {
     /* minKey stays the same */
     /* maxKey stays the same */
 
-    return true;
 }
 
 void SkipList::reset() {
@@ -130,7 +146,7 @@ void SkipList::reset() {
 }
 
 std::string SkipList::returnVal(const Node *ptr) const {
-    return (ptr && ptr->val != "~DELETED~") ? ptr->val : "";
+    return (ptr) ? ptr->val : "";
 }
 
 std::string SkipList::get(uint64_t key) const {
@@ -155,9 +171,8 @@ uint64_t SkipList::getMaxKey() const {
 
 void SkipList::toSSTable(BloomFilter *bf, Pair *pairs, std::string *data) const {
     uint32_t index = 0;
-    uint32_t offset = 0;
-    uint32_t hashVal[4] = {0};
-    uint32_t key;
+    uint32_t offset = 10272 + 12*count;
+    uint64_t key;
     Node *tmp = head;
     while(tmp->down) tmp = tmp->down;
     tmp = tmp->right;
@@ -167,8 +182,7 @@ void SkipList::toSSTable(BloomFilter *bf, Pair *pairs, std::string *data) const 
         pairs[index].key = key;
         pairs[index].offset = offset;
         data[index] = tmp->val;
-        MurmurHash3_x64_128(&key, sizeof(key), 1, hashVal);
-        bf->set128(hashVal);
+        bf->setKey(key);
 
         offset += tmp->val.length();
         tmp = tmp->right;
