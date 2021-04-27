@@ -32,6 +32,10 @@ void BloomFilter::writeToFile(std::ofstream &ofs) const {
     ofs.write((const char*)bitset, (size_t)10240);
 }
 
+void BloomFilter::readFromFile(std::ifstream &ifs){
+    ifs.read((char*)bitset, (size_t)10240);
+}
+
 void BloomFilter::copyBF(BloomFilter *out) const {
     for (int i = 0; i < 2560; ++i) {
         out->bitset[i] = this->bitset[i];

@@ -125,7 +125,7 @@
 		<Unit filename="E:/Workspace_CLion/LSMTree/Source/kvstore.cpp">
 			<Option target="LSMTree"/>
 		</Unit>
-		<Unit filename="E:/Workspace_CLion/LSMTree/Test/correctness.cc">
+		<Unit filename="E:/Workspace_CLion/LSMTree/Test/persistence.cc">
 			<Option target="LSMTree"/>
 		</Unit>
 		<Unit filename="E:/Workspace_CLion/LSMTree/Test/test.h">

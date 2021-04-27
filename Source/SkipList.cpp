@@ -104,13 +104,15 @@ Node* SkipList::getNode(uint64_t key) const {
     return nullptr;
 }
 
-void SkipList::del(uint64_t key) {
+bool SkipList::del(uint64_t key) {
     Node *ptr = getNode(key);
     if(ptr == nullptr) {
-        put(key, "~DELETED~");
-        return; // does not exist
+        if(put(key, "~DELETED~"))
+            return true;
+        else
+            return false;
     }
-    if(ptr->val == "~DELETED~") return; // already deleted
+    if(ptr->val == "~DELETED~") return true; // already deleted
 
     uint32_t oldlen = ptr->val.length();
     while(ptr){
@@ -121,6 +123,7 @@ void SkipList::del(uint64_t key) {
     /* count  stays the same */
     /* minKey stays the same */
     /* maxKey stays the same */
+    return true;
 
 }
 
@@ -146,7 +149,7 @@ void SkipList::reset() {
 }
 
 std::string SkipList::returnVal(const Node *ptr) const {
-    return (ptr) ? ptr->val : "";
+    return (ptr==nullptr) ? "" : ptr->val;
 }
 
 std::string SkipList::get(uint64_t key) const {

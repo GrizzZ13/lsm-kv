@@ -21,6 +21,7 @@ struct BloomFilter{
     void setKey(uint64_t key);
 
     void writeToFile(std::ofstream &ofs) const;
+    void readFromFile(std::ifstream &ifs);
     void copyBF(BloomFilter *out) const;
 };
 

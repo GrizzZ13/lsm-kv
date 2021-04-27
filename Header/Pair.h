@@ -16,6 +16,7 @@ struct Pair {
     Pair(){};
 
     void writeToFile(std::ofstream &ofs) const;
+    void readFromFile(std::ifstream &ifs);
 
 };
 

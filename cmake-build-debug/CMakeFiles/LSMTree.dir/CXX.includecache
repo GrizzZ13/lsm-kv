@@ -24,12 +24,6 @@ E:/Workspace_CLion/LSMTree/Header/Pair.h
 SSTable.h
 E:/Workspace_CLion/LSMTree/Header/SSTable.h
 
-E:/Workspace_CLion/LSMTree/Header/MurmurHash3.h
-stdlib.h
--
-stdint.h
--
-
 E:/Workspace_CLion/LSMTree/Header/Pair.h
 stdint.h
 -
@@ -102,11 +96,15 @@ dirent.h
 unistd.h
 -
 
-E:/Workspace_CLion/LSMTree/Source/SkipList.cpp
-../Header/SkipList.h
-E:/Workspace_CLion/LSMTree/Header/SkipList.h
-../Header/MurmurHash3.h
-E:/Workspace_CLion/LSMTree/Header/MurmurHash3.h
+E:/Workspace_CLion/LSMTree/Source/CacheList.cpp
+../Header/CacheList.h
+E:/Workspace_CLion/LSMTree/Header/CacheList.h
+../Header/utils.h
+E:/Workspace_CLion/LSMTree/Header/utils.h
+fstream
+-
+iostream
+-
 
 E:/Workspace_CLion/LSMTree/Source/kvstore.cpp
 string

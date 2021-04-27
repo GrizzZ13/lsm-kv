@@ -30,6 +30,8 @@ struct Cache {
 
     Cache();
 
+    Cache(const std::string &path);
+
     Cache(const std::string &path, const SSTable &ssTable);
 
     ~Cache();
@@ -46,13 +48,19 @@ private:
 public:
     CacheList();
 
+    CacheList(const std::string &subpath, uint64_t &max);
+
     ~CacheList();
 
     void AddCache(const std::string &path, const SSTable &ssTable);
 
+    void AddCache(const std::string &path);
+
     void get(uint64_t key, uint64_t &ts, std::string &ret) const;
 
     void delFiles();
+
+    uint32_t size() const;
 };
 
 #endif //LSMTREE_CACHELIST_H

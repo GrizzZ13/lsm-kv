@@ -5,10 +5,34 @@
 #include "../Header/CacheList.h"
 #include "../Header/utils.h"
 #include <fstream>
+#include <iostream>
 
 Cache::Cache() {
     pairs = nullptr;
     next = nullptr;
+}
+
+Cache::Cache(const std::string &str) {
+    path = str;
+    next = nullptr;
+
+    std::ifstream ifs;
+    ifs.open(path, std::ios::in | std::ios::binary);
+    ifs.read((char*)&timestamp, 8);
+    ifs.read((char*)&count, 8);
+    ifs.read((char*)&minKey, 8);
+    ifs.read((char*)&maxKey, 8);
+
+    /* bloom filter */
+    bf.readFromFile(ifs);
+
+    /* key and offset */
+    pairs = new Pair[count];
+    for (int i = 0; i < count; ++i) {
+        pairs[i].readFromFile(ifs);
+    }
+
+    ifs.close();
 }
 
 Cache::Cache(const std::string &str, const SSTable &ssTable) {
@@ -87,6 +111,21 @@ CacheList::CacheList() {
     head = new Cache();
 }
 
+CacheList::CacheList(const std::string &subpath, uint64_t &max) {
+    head = new Cache();
+    std::vector<std::string> file_name;
+    std::string file_path;
+    utils::scanDir(subpath, file_name);
+    for(auto itr=file_name.begin();itr!=file_name.end();++itr){
+        file_path.clear();
+        file_path = subpath + "/" + *itr;
+        uint64_t tmp;
+        sscanf((*itr).c_str(), "%Lu", &tmp);
+        max = (max > tmp) ? max : tmp;
+        AddCache(file_path);
+    }
+}
+
 CacheList::~CacheList() {
     Cache *tmp;
     while(head){
@@ -102,9 +141,14 @@ void CacheList::AddCache(const std::string &str, const SSTable &ssTable) {
     tmp->next = new Cache(str, ssTable);
 }
 
+void CacheList::AddCache(const std::string &str) {
+    Cache *tmp = head;
+    while(tmp->next) tmp= tmp->next;
+    tmp->next = new Cache(str);
+}
+
 void CacheList::get(uint64_t key, uint64_t &ts, std::string &ret) const {
     Cache *ptr = head->next; /* traversal pointer */
-    uint64_t ts_tmp = 0;
     while(ptr){
         ptr->get(key, ts, ret);
         ptr = ptr->next;
@@ -115,7 +159,18 @@ void CacheList::delFiles() {
     Cache *tmp = head->next;
     while(tmp){
         utils::rmfile(tmp->path.c_str());
+        tmp = tmp->next;
     }
+}
+
+uint32_t CacheList::size() const {
+    Cache *tmp = head->next;
+    uint32_t size = 0;
+    while(tmp){
+        tmp = tmp->next;
+        size++;
+    }
+    return size;
 }
 
 //void CacheList::reset() {

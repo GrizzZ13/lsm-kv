@@ -303,32 +303,32 @@ Source/kvstore.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/kvstore.cpp.s
 .PHONY : Source/kvstore.cpp.s
 
-Test/correctness.obj: Test/correctness.cc.obj
+Test/persistence.obj: Test/persistence.cc.obj
 
-.PHONY : Test/correctness.obj
+.PHONY : Test/persistence.obj
 
 # target to build an object file
-Test/correctness.cc.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Test/correctness.cc.obj
-.PHONY : Test/correctness.cc.obj
+Test/persistence.cc.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Test/persistence.cc.obj
+.PHONY : Test/persistence.cc.obj
 
-Test/correctness.i: Test/correctness.cc.i
+Test/persistence.i: Test/persistence.cc.i
 
-.PHONY : Test/correctness.i
+.PHONY : Test/persistence.i
 
 # target to preprocess a source file
-Test/correctness.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Test/correctness.cc.i
-.PHONY : Test/correctness.cc.i
+Test/persistence.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Test/persistence.cc.i
+.PHONY : Test/persistence.cc.i
 
-Test/correctness.s: Test/correctness.cc.s
+Test/persistence.s: Test/persistence.cc.s
 
-.PHONY : Test/correctness.s
+.PHONY : Test/persistence.s
 
 # target to generate assembly for a file
-Test/correctness.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Test/correctness.cc.s
-.PHONY : Test/correctness.cc.s
+Test/persistence.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Test/persistence.cc.s
+.PHONY : Test/persistence.cc.s
 
 # Help Target
 help:
@@ -357,9 +357,9 @@ help:
 	@echo ... Source/kvstore.obj
 	@echo ... Source/kvstore.i
 	@echo ... Source/kvstore.s
-	@echo ... Test/correctness.obj
-	@echo ... Test/correctness.i
-	@echo ... Test/correctness.s
+	@echo ... Test/persistence.obj
+	@echo ... Test/persistence.i
+	@echo ... Test/persistence.s
 .PHONY : help
 
 

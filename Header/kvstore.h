@@ -12,7 +12,7 @@ class KVStore : public KVStoreAPI {
 private:
     SkipList memTable;
     SSTable *ssTable;
-    uint64_t countInDisk;
+    uint64_t filenameMax;
     std::vector<CacheList*> storage;
 public:
     KVStore(const std::string &dir);
@@ -26,5 +26,7 @@ public:
 	bool del(uint64_t key) override;
 
 	void reset() override;
+
+	void storageSize() const;
 
 };

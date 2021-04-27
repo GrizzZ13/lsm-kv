@@ -40,7 +40,7 @@ public:
 
     bool put(uint64_t key, const std::string &s);
 
-    void del(uint64_t key);
+    bool del(uint64_t key); /* return false if storage overflow (greater than 2MB) */
 
     void reset();
 

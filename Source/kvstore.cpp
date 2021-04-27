@@ -7,10 +7,45 @@
 KVStore::KVStore(const std::string &dir): KVStoreAPI(dir)
 {
     ssTable = nullptr;
-    countInDisk = 0;
+    filenameMax = 0;
+    uint64_t max = 0;
+
+    std::string subpath;
+    std::vector<std::string> dir_name;
+    utils::scanDir(dir, dir_name);
+    uint32_t size = dir_name.size();
+    for (uint32_t i = 0; i < size; ++i) {
+        subpath = dir + "/level-" + std::to_string(i);
+        std::cout << subpath << std::endl;
+        CacheList* cacheList_tmp = new CacheList(subpath, max);
+        storage.push_back(cacheList_tmp);
+    }
+    filenameMax = max;
 }
 
 KVStore::~KVStore(){
+    filenameMax++;
+    ssTable = new SSTable(filenameMax, memTable);
+    std::string filename = std::to_string(filenameMax);
+    std::string dir = "./data/level-0/";
+    if (!utils::dirExists(dir)) {
+        utils::mkdir(dir.c_str());
+    }
+    std::string path = dir + filename + ".sst";
+    ssTable->writeToFile(path.c_str());
+    CacheList *cacheList_ptr;
+    if(storage.empty()) {
+        cacheList_ptr = new CacheList();
+        storage.push_back(cacheList_ptr);
+    }
+    else{
+        cacheList_ptr = storage[0];
+    }
+    cacheList_ptr->AddCache(path, *ssTable);
+
+    delete ssTable;
+    ssTable = nullptr;
+    memTable.reset();
 //    std::cout << "destructor" << std::endl;
     uint32_t size = storage.size();
     for (int i = 0; i < size; ++i) {
@@ -30,10 +65,10 @@ void KVStore::put(uint64_t key, const std::string &s)
     if(success) return;
 
     /* more than 2MB */
-    countInDisk++;
-    ssTable = new SSTable(countInDisk, memTable);
-    std::string filename = std::to_string(countInDisk);
-    std::string dir = "../data/level-0/";
+    filenameMax++;
+    ssTable = new SSTable(filenameMax, memTable);
+    std::string filename = std::to_string(filenameMax);
+    std::string dir = "./data/level-0/";
     if (!utils::dirExists(dir)) {
         utils::mkdir(dir.c_str());
     }
@@ -62,6 +97,7 @@ void KVStore::put(uint64_t key, const std::string &s)
 std::string KVStore::get(uint64_t key)
 {
     std::string retVal = memTable.get(key);
+    if(retVal=="~DELETED~") return "";
 
     uint64_t timestamp = 0;
     /* not found in memTable */
@@ -91,7 +127,9 @@ bool KVStore::del(uint64_t key)
     if(retVal=="~DELETED~") retVal="";
     if(retVal.empty()) return false;
 
-    memTable.del(key);
+    if(!memTable.del(key)){
+        put(key, "~DELETED~");
+    }
     return true;
 }
 
@@ -105,7 +143,7 @@ void KVStore::reset()
     memTable.reset();
     delete ssTable;
     ssTable = nullptr;
-    countInDisk = 0;
+    filenameMax = 0;
 
 //    std::cout << "reset storage " << std::endl;
 
@@ -117,7 +155,7 @@ void KVStore::reset()
     storage.clear();
 
     /* delete files */
-    std::string path = "../data";
+    std::string path = "./data";
     std::vector<std::string> name_dir;
     utils::scanDir(path, name_dir);
     for(auto itr1=name_dir.begin();itr1!=name_dir.end();++itr1){
@@ -131,4 +169,8 @@ void KVStore::reset()
         utils::rmdir(sub_path.c_str());
     }
 //    std::cout << "reset finished" << std::endl;
+}
+
+void KVStore::storageSize() const {
+    std::cout << storage[0]->size() << std::endl;
 }

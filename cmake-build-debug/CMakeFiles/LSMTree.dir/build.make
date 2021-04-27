@@ -75,18 +75,18 @@ include CMakeFiles/LSMTree.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/LSMTree.dir/flags.make
 
-CMakeFiles/LSMTree.dir/Test/correctness.cc.obj: CMakeFiles/LSMTree.dir/flags.make
-CMakeFiles/LSMTree.dir/Test/correctness.cc.obj: ../Test/correctness.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Workspace_CLion\LSMTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/LSMTree.dir/Test/correctness.cc.obj"
-	D:\MinGW_win64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\LSMTree.dir\Test\correctness.cc.obj -c E:\Workspace_CLion\LSMTree\Test\correctness.cc
+CMakeFiles/LSMTree.dir/Test/persistence.cc.obj: CMakeFiles/LSMTree.dir/flags.make
+CMakeFiles/LSMTree.dir/Test/persistence.cc.obj: ../Test/persistence.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Workspace_CLion\LSMTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/LSMTree.dir/Test/persistence.cc.obj"
+	D:\MinGW_win64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\LSMTree.dir\Test\persistence.cc.obj -c E:\Workspace_CLion\LSMTree\Test\persistence.cc
 
-CMakeFiles/LSMTree.dir/Test/correctness.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LSMTree.dir/Test/correctness.cc.i"
-	D:\MinGW_win64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\Workspace_CLion\LSMTree\Test\correctness.cc > CMakeFiles\LSMTree.dir\Test\correctness.cc.i
+CMakeFiles/LSMTree.dir/Test/persistence.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LSMTree.dir/Test/persistence.cc.i"
+	D:\MinGW_win64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\Workspace_CLion\LSMTree\Test\persistence.cc > CMakeFiles\LSMTree.dir\Test\persistence.cc.i
 
-CMakeFiles/LSMTree.dir/Test/correctness.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LSMTree.dir/Test/correctness.cc.s"
-	D:\MinGW_win64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\Workspace_CLion\LSMTree\Test\correctness.cc -o CMakeFiles\LSMTree.dir\Test\correctness.cc.s
+CMakeFiles/LSMTree.dir/Test/persistence.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LSMTree.dir/Test/persistence.cc.s"
+	D:\MinGW_win64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\Workspace_CLion\LSMTree\Test\persistence.cc -o CMakeFiles\LSMTree.dir\Test\persistence.cc.s
 
 CMakeFiles/LSMTree.dir/Source/BloomFilter.cpp.obj: CMakeFiles/LSMTree.dir/flags.make
 CMakeFiles/LSMTree.dir/Source/BloomFilter.cpp.obj: ../Source/BloomFilter.cpp
@@ -168,7 +168,7 @@ CMakeFiles/LSMTree.dir/Source/kvstore.cpp.s: cmake_force
 
 # Object files for target LSMTree
 LSMTree_OBJECTS = \
-"CMakeFiles/LSMTree.dir/Test/correctness.cc.obj" \
+"CMakeFiles/LSMTree.dir/Test/persistence.cc.obj" \
 "CMakeFiles/LSMTree.dir/Source/BloomFilter.cpp.obj" \
 "CMakeFiles/LSMTree.dir/Source/CacheList.cpp.obj" \
 "CMakeFiles/LSMTree.dir/Source/Pair.cpp.obj" \
@@ -179,7 +179,7 @@ LSMTree_OBJECTS = \
 # External object files for target LSMTree
 LSMTree_EXTERNAL_OBJECTS =
 
-LSMTree.exe: CMakeFiles/LSMTree.dir/Test/correctness.cc.obj
+LSMTree.exe: CMakeFiles/LSMTree.dir/Test/persistence.cc.obj
 LSMTree.exe: CMakeFiles/LSMTree.dir/Source/BloomFilter.cpp.obj
 LSMTree.exe: CMakeFiles/LSMTree.dir/Source/CacheList.cpp.obj
 LSMTree.exe: CMakeFiles/LSMTree.dir/Source/Pair.cpp.obj
