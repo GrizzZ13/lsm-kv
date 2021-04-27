@@ -4,5 +4,6 @@
 # Datasource local storage ignored files
 /../../../../:\Workspace_CLion\LSMTree\.idea/dataSources/
 /dataSources.local.xml
+../cmake-build-debug
 # Editor-based HTTP Client requests
 /httpRequests/
