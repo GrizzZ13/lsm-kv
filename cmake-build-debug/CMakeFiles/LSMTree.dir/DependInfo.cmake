@@ -10,7 +10,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "E:/Workspace_CLion/LSMTree/Source/SSTable.cpp" "E:/Workspace_CLion/LSMTree/cmake-build-debug/CMakeFiles/LSMTree.dir/Source/SSTable.cpp.obj"
   "E:/Workspace_CLion/LSMTree/Source/SkipList.cpp" "E:/Workspace_CLion/LSMTree/cmake-build-debug/CMakeFiles/LSMTree.dir/Source/SkipList.cpp.obj"
   "E:/Workspace_CLion/LSMTree/Source/kvstore.cpp" "E:/Workspace_CLion/LSMTree/cmake-build-debug/CMakeFiles/LSMTree.dir/Source/kvstore.cpp.obj"
-  "E:/Workspace_CLion/LSMTree/Test/persistence.cc" "E:/Workspace_CLion/LSMTree/cmake-build-debug/CMakeFiles/LSMTree.dir/Test/persistence.cc.obj"
+  "E:/Workspace_CLion/LSMTree/Test/correctness.cc" "E:/Workspace_CLion/LSMTree/cmake-build-debug/CMakeFiles/LSMTree.dir/Test/correctness.cc.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

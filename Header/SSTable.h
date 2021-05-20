@@ -29,7 +29,7 @@ private:
 
     /* data field */
     std::string *data;
-
+//    std::string data;
 public:
     SSTable(uint64_t ts, const SkipList &skipList);
 

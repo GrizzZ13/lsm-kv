@@ -12,9 +12,9 @@ Cache::Cache() {
     next = nullptr;
 }
 
-Cache::Cache(const std::string &str) {
+Cache::Cache(const std::string &str, Cache *_next) {
     path = str;
-    next = nullptr;
+    next = _next;
 
     std::ifstream ifs;
     ifs.open(path, std::ios::in | std::ios::binary);
@@ -35,7 +35,7 @@ Cache::Cache(const std::string &str) {
     ifs.close();
 }
 
-Cache::Cache(const std::string &str, const SSTable &ssTable) {
+Cache::Cache(const std::string &str, const SSTable &ssTable, Cache *_next) {
     path = str;
     timestamp = ssTable.getTimestamp();
     count = ssTable.getCount();
@@ -44,7 +44,7 @@ Cache::Cache(const std::string &str, const SSTable &ssTable) {
     ssTable.copyBF(&bf); /* set bloom filter */
     pairs = new Pair[count];
     ssTable.copyPairs(pairs); /* set pairs */
-    next = nullptr;
+    next = _next;
 }
 
 Cache::~Cache() {
@@ -107,12 +107,19 @@ Pair *Cache::binarySearch(Pair *pair, uint64_t key, uint64_t size) const {
     return nullptr;
 }
 
+uint64_t Cache::getTimeStamp() const {
+    return timestamp;
+}
+
 CacheList::CacheList() {
     head = new Cache();
+    nextFileIndex = 1;
 }
 
 CacheList::CacheList(const std::string &subpath, uint64_t &max) {
     head = new Cache();
+    nextFileIndex = 0;
+    uint64_t maxTimeStamp = 0;
     std::vector<std::string> file_name;
     std::string file_path;
     utils::scanDir(subpath, file_name);
@@ -121,9 +128,12 @@ CacheList::CacheList(const std::string &subpath, uint64_t &max) {
         file_path = subpath + "/" + *itr;
         uint64_t tmp;
         sscanf((*itr).c_str(), "%Lu", &tmp);
-        max = (max > tmp) ? max : tmp;
-        AddCache(file_path);
+        nextFileIndex = (tmp + 1 >= nextFileIndex) ? tmp + 1 : nextFileIndex;
+        tmp = AddCache(file_path);
+        maxTimeStamp = (maxTimeStamp >= tmp) ? maxTimeStamp : tmp;
     }
+    // update maxTimestamp
+    max = maxTimeStamp;
 }
 
 CacheList::~CacheList() {
@@ -136,15 +146,18 @@ CacheList::~CacheList() {
 }
 
 void CacheList::AddCache(const std::string &str, const SSTable &ssTable) {
-    Cache *tmp = head;
-    while(tmp->next) tmp= tmp->next;
-    tmp->next = new Cache(str, ssTable);
+    Cache *head_next = head->next;
+    Cache *tmp = new Cache(str, ssTable, head_next);
+    head->next = tmp;
+    nextFileIndex++;
 }
 
-void CacheList::AddCache(const std::string &str) {
-    Cache *tmp = head;
-    while(tmp->next) tmp= tmp->next;
-    tmp->next = new Cache(str);
+uint64_t CacheList::AddCache(const std::string &str) {
+    // initialize from existing directory, don't need to update next file name here
+    Cache *head_next = head->next;
+    Cache *tmp = new Cache(str, head_next);
+    head->next = tmp;
+    return tmp->getTimeStamp();
 }
 
 void CacheList::get(uint64_t key, uint64_t &ts, std::string &ret) const {
@@ -171,6 +184,10 @@ uint32_t CacheList::size() const {
         size++;
     }
     return size;
+}
+
+uint64_t CacheList::getNextFileIndex() const {
+    return nextFileIndex;
 }
 
 //void CacheList::reset() {

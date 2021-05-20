@@ -62,6 +62,7 @@ private:
 //        phase();
 
         report();
+        store.storageSize();
     }
 
 public:

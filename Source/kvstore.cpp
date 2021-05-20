@@ -7,8 +7,9 @@
 KVStore::KVStore(const std::string &dir): KVStoreAPI(dir)
 {
     ssTable = nullptr;
-    filenameMax = 0;
-    uint64_t max = 0;
+    maxTimeStamp = 0;
+    // update max filename
+    uint64_t maxts = 0;
 
     std::string subpath;
     std::vector<std::string> dir_name;
@@ -17,42 +18,49 @@ KVStore::KVStore(const std::string &dir): KVStoreAPI(dir)
     for (uint32_t i = 0; i < size; ++i) {
         subpath = dir + "/level-" + std::to_string(i);
         std::cout << subpath << std::endl;
-        CacheList* cacheList_tmp = new CacheList(subpath, max);
+        CacheList* cacheList_tmp = new CacheList(subpath, maxts);
         storage.push_back(cacheList_tmp);
     }
-    filenameMax = max;
+    maxTimeStamp = maxts;
 }
 
 KVStore::~KVStore(){
-    filenameMax++;
-    ssTable = new SSTable(filenameMax, memTable);
-    std::string filename = std::to_string(filenameMax);
-    std::string dir = "./data/level-0/";
-    if (!utils::dirExists(dir)) {
-        utils::mkdir(dir.c_str());
-    }
-    std::string path = dir + filename + ".sst";
-    ssTable->writeToFile(path.c_str());
-    CacheList *cacheList_ptr;
-    if(storage.empty()) {
-        cacheList_ptr = new CacheList();
-        storage.push_back(cacheList_ptr);
-    }
-    else{
-        cacheList_ptr = storage[0];
-    }
-    cacheList_ptr->AddCache(path, *ssTable);
+    // the data that remains in memory need to be wrote to disk
+//    writeToDisk();
 
-    delete ssTable;
-    ssTable = nullptr;
-    memTable.reset();
-//    std::cout << "destructor" << std::endl;
+    // destructor body
     uint32_t size = storage.size();
     for (int i = 0; i < size; ++i) {
         if(storage[i]!= nullptr)
             delete storage[i];
     }
-//    std::cout << "destructor finished" << std::endl;
+    storage.clear();
+}
+
+void KVStore::writeToDisk() {
+    maxTimeStamp++;
+    ssTable = new SSTable(maxTimeStamp, memTable);
+
+    // avoid null pointer
+    CacheList *cacheList_ptr;
+    if(storage.empty()) {
+        cacheList_ptr = new CacheList();
+        storage.push_back(cacheList_ptr);
+    }
+    cacheList_ptr = storage[0];
+    // calculate next fine index and transfer it to filename string
+    uint64_t nextFileIndex = cacheList_ptr->getNextFileIndex();
+    std::string filename = std::to_string(nextFileIndex) + ".sst";
+    std::string dir = "./data/level-0/";
+    if (!utils::dirExists(dir)) {
+        utils::mkdir(dir.c_str());
+    }
+    std::string path = dir + filename;
+    ssTable->writeToFile(path.c_str());
+    cacheList_ptr->AddCache(path, *ssTable);
+    delete ssTable;
+    ssTable = nullptr;
+    memTable.reset();
 }
 
 /**
@@ -61,34 +69,13 @@ KVStore::~KVStore(){
  */
 void KVStore::put(uint64_t key, const std::string &s)
 {
-    bool success = memTable.put(key, s);
-    if(success) return;
-
-    /* more than 2MB */
-    filenameMax++;
-    ssTable = new SSTable(filenameMax, memTable);
-    std::string filename = std::to_string(filenameMax);
-    std::string dir = "./data/level-0/";
-    if (!utils::dirExists(dir)) {
-        utils::mkdir(dir.c_str());
-    }
-    std::string path = dir + filename + ".sst";
-    ssTable->writeToFile(path.c_str());
-    CacheList *cacheList_ptr;
-    if(storage.empty()) {
-        cacheList_ptr = new CacheList();
-        storage.push_back(cacheList_ptr);
-    }
+    if(memTable.put(key, s))
+        return;
     else{
-        cacheList_ptr = storage[0];
+        /* more than 2MB */
+        writeToDisk();
+        memTable.put(key, s);
     }
-    cacheList_ptr->AddCache(path, *ssTable);
-
-    delete ssTable;
-    ssTable = nullptr;
-    memTable.reset();
-
-    memTable.put(key, s);
 }
 /**
  * Returns the (string) value of the given key.
@@ -143,9 +130,7 @@ void KVStore::reset()
     memTable.reset();
     delete ssTable;
     ssTable = nullptr;
-    filenameMax = 0;
-
-//    std::cout << "reset storage " << std::endl;
+    maxTimeStamp = 0;
 
     /* delete storage */
     uint32_t size = storage.size();
@@ -168,9 +153,11 @@ void KVStore::reset()
         }
         utils::rmdir(sub_path.c_str());
     }
-//    std::cout << "reset finished" << std::endl;
 }
 
 void KVStore::storageSize() const {
     std::cout << storage[0]->size() << std::endl;
+}
+
+void KVStore::compaction() {
 }

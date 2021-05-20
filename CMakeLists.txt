@@ -26,8 +26,8 @@ file(GLOB SOURCES
 #===========================Test==========================#
         Test/test.h
 #        Test/main.cpp
-#        Test/correctness.cc
-        Test/persistence.cc
+        Test/correctness.cc
+#        Test/persistence.cc
         )
 
-add_executable(LSMTree Test/persistence.cc ${SOURCE_FILES} ${SOURCES})
+add_executable(LSMTree Test/correctness.cc ${SOURCE_FILES} ${SOURCES})

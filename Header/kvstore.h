@@ -12,7 +12,7 @@ class KVStore : public KVStoreAPI {
 private:
     SkipList memTable;
     SSTable *ssTable;
-    uint64_t filenameMax;
+    uint64_t maxTimeStamp;
     std::vector<CacheList*> storage;
 public:
     KVStore(const std::string &dir);
@@ -29,4 +29,8 @@ public:
 
 	void storageSize() const;
 
+	// write from memory to disk and clear sstable and memorytable
+	void writeToDisk();
+
+	void compaction();
 };
