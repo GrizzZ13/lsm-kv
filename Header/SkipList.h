@@ -48,7 +48,7 @@ public:
 
     std::string get(uint64_t key) const;
 
-    void toSSTable(BloomFilter *bf, Pair *pairs, std::string *data) const;
+    void toSSTable(BloomFilter *bf, Pair *pairs, std::string &data) const;
 
     uint32_t getSize() const;
 

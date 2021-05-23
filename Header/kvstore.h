@@ -27,9 +27,7 @@ public:
 
 	void reset() override;
 
-	void storageSize() const;
-
-	// write from memory to disk and clear sstable and memorytable
+	// write from memory to disk and clear sstable and memory table
 	void writeToDisk();
 
 	void compaction();

@@ -7,16 +7,21 @@ CMakeFiles/LSMTree.dir/Source/BloomFilter.cpp.obj: ../Source/BloomFilter.cpp
 
 CMakeFiles/LSMTree.dir/Source/CacheList.cpp.obj: ../Header/BloomFilter.h
 CMakeFiles/LSMTree.dir/Source/CacheList.cpp.obj: ../Header/CacheList.h
+CMakeFiles/LSMTree.dir/Source/CacheList.cpp.obj: ../Header/CompactionNode.h
 CMakeFiles/LSMTree.dir/Source/CacheList.cpp.obj: ../Header/Pair.h
 CMakeFiles/LSMTree.dir/Source/CacheList.cpp.obj: ../Header/SSTable.h
 CMakeFiles/LSMTree.dir/Source/CacheList.cpp.obj: ../Header/SkipList.h
 CMakeFiles/LSMTree.dir/Source/CacheList.cpp.obj: ../Header/utils.h
 CMakeFiles/LSMTree.dir/Source/CacheList.cpp.obj: ../Source/CacheList.cpp
 
+CMakeFiles/LSMTree.dir/Source/CompactionNode.cpp.obj: ../Header/CompactionNode.h
+CMakeFiles/LSMTree.dir/Source/CompactionNode.cpp.obj: ../Source/CompactionNode.cpp
+
 CMakeFiles/LSMTree.dir/Source/Pair.cpp.obj: ../Header/Pair.h
 CMakeFiles/LSMTree.dir/Source/Pair.cpp.obj: ../Source/Pair.cpp
 
 CMakeFiles/LSMTree.dir/Source/SSTable.cpp.obj: ../Header/BloomFilter.h
+CMakeFiles/LSMTree.dir/Source/SSTable.cpp.obj: ../Header/CompactionNode.h
 CMakeFiles/LSMTree.dir/Source/SSTable.cpp.obj: ../Header/MurmurHash3.h
 CMakeFiles/LSMTree.dir/Source/SSTable.cpp.obj: ../Header/Pair.h
 CMakeFiles/LSMTree.dir/Source/SSTable.cpp.obj: ../Header/SSTable.h
@@ -31,6 +36,7 @@ CMakeFiles/LSMTree.dir/Source/SkipList.cpp.obj: ../Source/SkipList.cpp
 
 CMakeFiles/LSMTree.dir/Source/kvstore.cpp.obj: ../Header/BloomFilter.h
 CMakeFiles/LSMTree.dir/Source/kvstore.cpp.obj: ../Header/CacheList.h
+CMakeFiles/LSMTree.dir/Source/kvstore.cpp.obj: ../Header/CompactionNode.h
 CMakeFiles/LSMTree.dir/Source/kvstore.cpp.obj: ../Header/Pair.h
 CMakeFiles/LSMTree.dir/Source/kvstore.cpp.obj: ../Header/SSTable.h
 CMakeFiles/LSMTree.dir/Source/kvstore.cpp.obj: ../Header/SkipList.h
@@ -39,13 +45,14 @@ CMakeFiles/LSMTree.dir/Source/kvstore.cpp.obj: ../Header/kvstore_api.h
 CMakeFiles/LSMTree.dir/Source/kvstore.cpp.obj: ../Header/utils.h
 CMakeFiles/LSMTree.dir/Source/kvstore.cpp.obj: ../Source/kvstore.cpp
 
-CMakeFiles/LSMTree.dir/Test/correctness.cc.obj: ../Header/BloomFilter.h
-CMakeFiles/LSMTree.dir/Test/correctness.cc.obj: ../Header/CacheList.h
-CMakeFiles/LSMTree.dir/Test/correctness.cc.obj: ../Header/Pair.h
-CMakeFiles/LSMTree.dir/Test/correctness.cc.obj: ../Header/SSTable.h
-CMakeFiles/LSMTree.dir/Test/correctness.cc.obj: ../Header/SkipList.h
-CMakeFiles/LSMTree.dir/Test/correctness.cc.obj: ../Header/kvstore.h
-CMakeFiles/LSMTree.dir/Test/correctness.cc.obj: ../Header/kvstore_api.h
-CMakeFiles/LSMTree.dir/Test/correctness.cc.obj: ../Test/correctness.cc
-CMakeFiles/LSMTree.dir/Test/correctness.cc.obj: ../Test/test.h
+CMakeFiles/LSMTree.dir/Test/persistence.cc.obj: ../Header/BloomFilter.h
+CMakeFiles/LSMTree.dir/Test/persistence.cc.obj: ../Header/CacheList.h
+CMakeFiles/LSMTree.dir/Test/persistence.cc.obj: ../Header/CompactionNode.h
+CMakeFiles/LSMTree.dir/Test/persistence.cc.obj: ../Header/Pair.h
+CMakeFiles/LSMTree.dir/Test/persistence.cc.obj: ../Header/SSTable.h
+CMakeFiles/LSMTree.dir/Test/persistence.cc.obj: ../Header/SkipList.h
+CMakeFiles/LSMTree.dir/Test/persistence.cc.obj: ../Header/kvstore.h
+CMakeFiles/LSMTree.dir/Test/persistence.cc.obj: ../Header/kvstore_api.h
+CMakeFiles/LSMTree.dir/Test/persistence.cc.obj: ../Test/persistence.cc
+CMakeFiles/LSMTree.dir/Test/persistence.cc.obj: ../Test/test.h
 

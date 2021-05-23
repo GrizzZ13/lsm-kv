@@ -74,6 +74,7 @@ void KVStore::put(uint64_t key, const std::string &s)
     else{
         /* more than 2MB */
         writeToDisk();
+        compaction();
         memTable.put(key, s);
     }
 }
@@ -155,9 +156,22 @@ void KVStore::reset()
     }
 }
 
-void KVStore::storageSize() const {
-    std::cout << storage[0]->size() << std::endl;
-}
-
 void KVStore::compaction() {
+    // level-0
+    if(storage[0]->size() < 3)
+        return;
+    else{// storage[0]->size == 3
+        std::vector<Range> range;
+        std::vector<std::vector<CompactionNode*>> nodes;
+        range = storage[0]->getNodes_0(nodes);
+        uint32_t level = 1;
+        do{
+            if(storage.size()==level){
+                CacheList *tmp = new CacheList();
+                storage.push_back(tmp);
+            }
+            range = storage[level]->getNodes_k(nodes, range, level);
+            level++;
+        }while(!range.empty());
+    }
 }

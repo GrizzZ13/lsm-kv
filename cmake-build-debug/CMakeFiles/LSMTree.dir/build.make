@@ -75,18 +75,18 @@ include CMakeFiles/LSMTree.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/LSMTree.dir/flags.make
 
-CMakeFiles/LSMTree.dir/Test/correctness.cc.obj: CMakeFiles/LSMTree.dir/flags.make
-CMakeFiles/LSMTree.dir/Test/correctness.cc.obj: ../Test/correctness.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Workspace_CLion\LSMTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/LSMTree.dir/Test/correctness.cc.obj"
-	E:\Qt\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\LSMTree.dir\Test\correctness.cc.obj -c E:\Workspace_CLion\LSMTree\Test\correctness.cc
+CMakeFiles/LSMTree.dir/Test/persistence.cc.obj: CMakeFiles/LSMTree.dir/flags.make
+CMakeFiles/LSMTree.dir/Test/persistence.cc.obj: ../Test/persistence.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Workspace_CLion\LSMTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/LSMTree.dir/Test/persistence.cc.obj"
+	E:\Qt\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\LSMTree.dir\Test\persistence.cc.obj -c E:\Workspace_CLion\LSMTree\Test\persistence.cc
 
-CMakeFiles/LSMTree.dir/Test/correctness.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LSMTree.dir/Test/correctness.cc.i"
-	E:\Qt\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\Workspace_CLion\LSMTree\Test\correctness.cc > CMakeFiles\LSMTree.dir\Test\correctness.cc.i
+CMakeFiles/LSMTree.dir/Test/persistence.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LSMTree.dir/Test/persistence.cc.i"
+	E:\Qt\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\Workspace_CLion\LSMTree\Test\persistence.cc > CMakeFiles\LSMTree.dir\Test\persistence.cc.i
 
-CMakeFiles/LSMTree.dir/Test/correctness.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LSMTree.dir/Test/correctness.cc.s"
-	E:\Qt\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\Workspace_CLion\LSMTree\Test\correctness.cc -o CMakeFiles\LSMTree.dir\Test\correctness.cc.s
+CMakeFiles/LSMTree.dir/Test/persistence.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LSMTree.dir/Test/persistence.cc.s"
+	E:\Qt\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\Workspace_CLion\LSMTree\Test\persistence.cc -o CMakeFiles\LSMTree.dir\Test\persistence.cc.s
 
 CMakeFiles/LSMTree.dir/Source/BloomFilter.cpp.obj: CMakeFiles/LSMTree.dir/flags.make
 CMakeFiles/LSMTree.dir/Source/BloomFilter.cpp.obj: ../Source/BloomFilter.cpp
@@ -114,9 +114,22 @@ CMakeFiles/LSMTree.dir/Source/CacheList.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LSMTree.dir/Source/CacheList.cpp.s"
 	E:\Qt\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\Workspace_CLion\LSMTree\Source\CacheList.cpp -o CMakeFiles\LSMTree.dir\Source\CacheList.cpp.s
 
+CMakeFiles/LSMTree.dir/Source/CompactionNode.cpp.obj: CMakeFiles/LSMTree.dir/flags.make
+CMakeFiles/LSMTree.dir/Source/CompactionNode.cpp.obj: ../Source/CompactionNode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Workspace_CLion\LSMTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/LSMTree.dir/Source/CompactionNode.cpp.obj"
+	E:\Qt\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\LSMTree.dir\Source\CompactionNode.cpp.obj -c E:\Workspace_CLion\LSMTree\Source\CompactionNode.cpp
+
+CMakeFiles/LSMTree.dir/Source/CompactionNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LSMTree.dir/Source/CompactionNode.cpp.i"
+	E:\Qt\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\Workspace_CLion\LSMTree\Source\CompactionNode.cpp > CMakeFiles\LSMTree.dir\Source\CompactionNode.cpp.i
+
+CMakeFiles/LSMTree.dir/Source/CompactionNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LSMTree.dir/Source/CompactionNode.cpp.s"
+	E:\Qt\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\Workspace_CLion\LSMTree\Source\CompactionNode.cpp -o CMakeFiles\LSMTree.dir\Source\CompactionNode.cpp.s
+
 CMakeFiles/LSMTree.dir/Source/Pair.cpp.obj: CMakeFiles/LSMTree.dir/flags.make
 CMakeFiles/LSMTree.dir/Source/Pair.cpp.obj: ../Source/Pair.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Workspace_CLion\LSMTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/LSMTree.dir/Source/Pair.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Workspace_CLion\LSMTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/LSMTree.dir/Source/Pair.cpp.obj"
 	E:\Qt\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\LSMTree.dir\Source\Pair.cpp.obj -c E:\Workspace_CLion\LSMTree\Source\Pair.cpp
 
 CMakeFiles/LSMTree.dir/Source/Pair.cpp.i: cmake_force
@@ -129,7 +142,7 @@ CMakeFiles/LSMTree.dir/Source/Pair.cpp.s: cmake_force
 
 CMakeFiles/LSMTree.dir/Source/SSTable.cpp.obj: CMakeFiles/LSMTree.dir/flags.make
 CMakeFiles/LSMTree.dir/Source/SSTable.cpp.obj: ../Source/SSTable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Workspace_CLion\LSMTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/LSMTree.dir/Source/SSTable.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Workspace_CLion\LSMTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/LSMTree.dir/Source/SSTable.cpp.obj"
 	E:\Qt\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\LSMTree.dir\Source\SSTable.cpp.obj -c E:\Workspace_CLion\LSMTree\Source\SSTable.cpp
 
 CMakeFiles/LSMTree.dir/Source/SSTable.cpp.i: cmake_force
@@ -142,7 +155,7 @@ CMakeFiles/LSMTree.dir/Source/SSTable.cpp.s: cmake_force
 
 CMakeFiles/LSMTree.dir/Source/SkipList.cpp.obj: CMakeFiles/LSMTree.dir/flags.make
 CMakeFiles/LSMTree.dir/Source/SkipList.cpp.obj: ../Source/SkipList.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Workspace_CLion\LSMTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/LSMTree.dir/Source/SkipList.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Workspace_CLion\LSMTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/LSMTree.dir/Source/SkipList.cpp.obj"
 	E:\Qt\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\LSMTree.dir\Source\SkipList.cpp.obj -c E:\Workspace_CLion\LSMTree\Source\SkipList.cpp
 
 CMakeFiles/LSMTree.dir/Source/SkipList.cpp.i: cmake_force
@@ -155,7 +168,7 @@ CMakeFiles/LSMTree.dir/Source/SkipList.cpp.s: cmake_force
 
 CMakeFiles/LSMTree.dir/Source/kvstore.cpp.obj: CMakeFiles/LSMTree.dir/flags.make
 CMakeFiles/LSMTree.dir/Source/kvstore.cpp.obj: ../Source/kvstore.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Workspace_CLion\LSMTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/LSMTree.dir/Source/kvstore.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\Workspace_CLion\LSMTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/LSMTree.dir/Source/kvstore.cpp.obj"
 	E:\Qt\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\LSMTree.dir\Source\kvstore.cpp.obj -c E:\Workspace_CLion\LSMTree\Source\kvstore.cpp
 
 CMakeFiles/LSMTree.dir/Source/kvstore.cpp.i: cmake_force
@@ -168,9 +181,10 @@ CMakeFiles/LSMTree.dir/Source/kvstore.cpp.s: cmake_force
 
 # Object files for target LSMTree
 LSMTree_OBJECTS = \
-"CMakeFiles/LSMTree.dir/Test/correctness.cc.obj" \
+"CMakeFiles/LSMTree.dir/Test/persistence.cc.obj" \
 "CMakeFiles/LSMTree.dir/Source/BloomFilter.cpp.obj" \
 "CMakeFiles/LSMTree.dir/Source/CacheList.cpp.obj" \
+"CMakeFiles/LSMTree.dir/Source/CompactionNode.cpp.obj" \
 "CMakeFiles/LSMTree.dir/Source/Pair.cpp.obj" \
 "CMakeFiles/LSMTree.dir/Source/SSTable.cpp.obj" \
 "CMakeFiles/LSMTree.dir/Source/SkipList.cpp.obj" \
@@ -179,9 +193,10 @@ LSMTree_OBJECTS = \
 # External object files for target LSMTree
 LSMTree_EXTERNAL_OBJECTS =
 
-LSMTree.exe: CMakeFiles/LSMTree.dir/Test/correctness.cc.obj
+LSMTree.exe: CMakeFiles/LSMTree.dir/Test/persistence.cc.obj
 LSMTree.exe: CMakeFiles/LSMTree.dir/Source/BloomFilter.cpp.obj
 LSMTree.exe: CMakeFiles/LSMTree.dir/Source/CacheList.cpp.obj
+LSMTree.exe: CMakeFiles/LSMTree.dir/Source/CompactionNode.cpp.obj
 LSMTree.exe: CMakeFiles/LSMTree.dir/Source/Pair.cpp.obj
 LSMTree.exe: CMakeFiles/LSMTree.dir/Source/SSTable.cpp.obj
 LSMTree.exe: CMakeFiles/LSMTree.dir/Source/SkipList.cpp.obj
@@ -190,7 +205,7 @@ LSMTree.exe: CMakeFiles/LSMTree.dir/build.make
 LSMTree.exe: CMakeFiles/LSMTree.dir/linklibs.rsp
 LSMTree.exe: CMakeFiles/LSMTree.dir/objects1.rsp
 LSMTree.exe: CMakeFiles/LSMTree.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=E:\Workspace_CLion\LSMTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable LSMTree.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=E:\Workspace_CLion\LSMTree\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable LSMTree.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\LSMTree.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

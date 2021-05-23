@@ -14,20 +14,26 @@ file(GLOB SOURCES
         Header/SkipList.h
         Source/SkipList.cpp
 
+        Source/CompactionNode.cpp
+        Header/CompactionNode.h
+
         Source/SSTable.cpp
         Header/SSTable.h
+
         Source/BloomFilter.cpp
         Header/BloomFilter.h
+
         Source/Pair.cpp
         Header/Pair.h
+
         Source/kvstore.cpp
         Source/CacheList.cpp
         Header/CacheList.h
 #===========================Test==========================#
         Test/test.h
 #        Test/main.cpp
-        Test/correctness.cc
-#        Test/persistence.cc
+#        Test/correctness.cc
+        Test/persistence.cc
         )
 
-add_executable(LSMTree Test/correctness.cc ${SOURCE_FILES} ${SOURCES})
+add_executable(LSMTree Test/persistence.cc ${SOURCE_FILES} ${SOURCES})

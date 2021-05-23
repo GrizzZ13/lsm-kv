@@ -14,14 +14,12 @@ SSTable::SSTable(uint64_t ts, const SkipList &skipList) {
     maxKey = skipList.getMaxKey();
 
     pairs = new Pair[count];
-    data = new std::string[count];
 
     skipList.toSSTable(&bf, pairs, data);
 }
 
 SSTable::~SSTable() {
     delete [] pairs;
-    delete [] data;
 }
 
 void SSTable::writeToFile(const char *path) const{
@@ -43,9 +41,7 @@ void SSTable::writeToFile(const char *path) const{
     }
 
     /* data */
-    for (int i = 0; i < count; ++i) {
-        ofs.write(data[i].c_str(), data[i].length());
-    }
+    ofs.write(data.c_str(), data.length());
 
     ofs.close();
 }
@@ -75,5 +71,31 @@ uint64_t SSTable::getMinKey() const {
 
 uint64_t SSTable::getMaxKey() const {
     return maxKey;
+}
+
+SSTable::SSTable(std::vector<CompactionNode*> &sorted, uint64_t start, uint64_t end) {
+    // timestamp hasn't been set yet
+    count = end-start;
+    pairs = new Pair[count];
+    minKey = 0xffffffffffffffff;
+    maxKey = 0;
+    uint32_t accumulation = 0;
+    uint32_t overhead = 10272 + 12 * count;
+    for(uint64_t i = start; i < end; ++i) {
+        CompactionNode *tmp = sorted[i];
+        minKey = (minKey < tmp->key) ? minKey : tmp->key;
+        maxKey = (maxKey > tmp->key) ? maxKey : tmp->key;
+        bf.setKey(tmp->key);
+        pairs[i-start].key = tmp->key;
+        pairs[i-start].offset = overhead + accumulation;
+        accumulation += tmp->value.length();
+        data += tmp->value;
+        delete sorted[i];
+        sorted[i] = nullptr;
+    }
+}
+
+void SSTable::setTimestamp(uint64_t _timestamp) {
+    timestamp = _timestamp;
 }
 

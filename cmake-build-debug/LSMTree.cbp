@@ -86,6 +86,9 @@
 		<Unit filename="E:/Workspace_CLion/LSMTree/Header/CacheList.h">
 			<Option target="LSMTree"/>
 		</Unit>
+		<Unit filename="E:/Workspace_CLion/LSMTree/Header/CompactionNode.h">
+			<Option target="LSMTree"/>
+		</Unit>
 		<Unit filename="E:/Workspace_CLion/LSMTree/Header/MurmurHash3.h">
 			<Option target="LSMTree"/>
 		</Unit>
@@ -113,6 +116,9 @@
 		<Unit filename="E:/Workspace_CLion/LSMTree/Source/CacheList.cpp">
 			<Option target="LSMTree"/>
 		</Unit>
+		<Unit filename="E:/Workspace_CLion/LSMTree/Source/CompactionNode.cpp">
+			<Option target="LSMTree"/>
+		</Unit>
 		<Unit filename="E:/Workspace_CLion/LSMTree/Source/Pair.cpp">
 			<Option target="LSMTree"/>
 		</Unit>
@@ -125,7 +131,7 @@
 		<Unit filename="E:/Workspace_CLion/LSMTree/Source/kvstore.cpp">
 			<Option target="LSMTree"/>
 		</Unit>
-		<Unit filename="E:/Workspace_CLion/LSMTree/Test/correctness.cc">
+		<Unit filename="E:/Workspace_CLion/LSMTree/Test/persistence.cc">
 			<Option target="LSMTree"/>
 		</Unit>
 		<Unit filename="E:/Workspace_CLion/LSMTree/Test/test.h">

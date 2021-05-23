@@ -12,6 +12,7 @@
 #include "BloomFilter.h"
 #include "Pair.h"
 #include "SkipList.h"
+#include "CompactionNode.h"
 
 class SSTable {
 private:
@@ -28,10 +29,16 @@ private:
     Pair *pairs;
 
     /* data field */
-    std::string *data;
-//    std::string data;
+//    std::string *data;
+    std::string data;
 public:
     SSTable(uint64_t ts, const SkipList &skipList);
+
+    // construct a sstable from existing compaction nodes [start, end)
+    // timestamp hasn't been set yet, CompactionNode* will be deleted
+    SSTable(std::vector<CompactionNode*> &sorted, uint64_t start, uint64_t end);
+
+    void setTimestamp(uint64_t _timestamp);
 
     ~SSTable();
 

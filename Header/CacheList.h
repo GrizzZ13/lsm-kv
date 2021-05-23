@@ -10,6 +10,7 @@
 #include "BloomFilter.h"
 #include "Pair.h"
 #include "SSTable.h"
+#include "CompactionNode.h"
 
 struct Cache {
     /* file information stored in cache except data */
@@ -42,6 +43,19 @@ struct Cache {
     uint64_t getTimeStamp() const;
 
     Pair* binarySearch(Pair* begin, uint64_t key, uint64_t size) const;
+
+    std::string getPath() const;
+};
+
+// judge whether a cache should be compacted
+struct Range{
+    uint64_t maxKey;
+    uint64_t minKey;
+
+    Range(uint64_t max, uint64_t min){
+        maxKey = max;
+        minKey = min;
+    }
 };
 
 class CacheList {
@@ -64,11 +78,34 @@ public:
 
     void get(uint64_t key, uint64_t &ts, std::string &ret) const;
 
-    void delFiles();
+    void delAllFiles();
 
     uint32_t size() const;
 
     uint64_t getNextFileIndex() const;
+
+    // for level-0 CacheList, return Range and nodes to be compacted
+    std::vector<Range> getNodes_0(std::vector<std::vector<CompactionNode*>> &nodes);
+
+    // for level-k CacheList, input higher level's compacting cache's range and level index
+    // return Range(empty if unnecessary) and nodes to be compacted(empty if unnecessary)
+    std::vector<Range> getNodes_k(std::vector<std::vector<CompactionNode*>> &nodes,
+                                  const std::vector<Range> &range, uint32_t level);
+
+    bool inRange(const std::vector<Range> &range, uint64_t max, uint64_t min);
+
+    void clear();
+
+    // sort [start, end]
+    std::vector<CompactionNode*> MergeSort(std::vector<std::vector<CompactionNode*>> &A,
+                                           uint64_t start, uint64_t end, bool lestLevel);
+
+    std::vector<CompactionNode*> MergeTwo(std::vector<CompactionNode*> &A, std::vector<CompactionNode*> &B, bool lastLevel);
+
+    // split compaction nodes, write to files and add caches to cachelist
+    void splitNodes(std::vector<CompactionNode*> &sorted, uint32_t level);
+
+    std::vector<SSTable*> getSSTables(std::vector<CompactionNode*> &sorted);
 };
 
 #endif //LSMTREE_CACHELIST_H

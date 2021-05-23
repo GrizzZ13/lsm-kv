@@ -172,22 +172,23 @@ uint64_t SkipList::getMaxKey() const {
     return maxKey;
 }
 
-void SkipList::toSSTable(BloomFilter *bf, Pair *pairs, std::string *data) const {
+void SkipList::toSSTable(BloomFilter *bf, Pair *pairs, std::string &data) const {
     uint32_t index = 0;
-    uint32_t offset = 10272 + 12*count;
+    uint32_t overhead = 10272 + 12 * count;
     uint64_t key;
     Node *tmp = head;
     while(tmp->down) tmp = tmp->down;
     tmp = tmp->right;
+    data.clear();
 
     while(tmp){
         key = tmp->key;
         pairs[index].key = key;
-        pairs[index].offset = offset;
-        data[index] = tmp->val;
+        pairs[index].offset = overhead;
+        data.append(tmp->val);
         bf->setKey(key);
 
-        offset += tmp->val.length();
+        overhead += tmp->val.length();
         tmp = tmp->right;
         index++;
     }
