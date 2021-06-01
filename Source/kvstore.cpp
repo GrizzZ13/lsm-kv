@@ -75,16 +75,8 @@ void KVStore::put(uint64_t key, const std::string &s)
         /* more than 2MB */
 
         writeToDisk();
-        if(count ==285){
-            int a = 10;
-        }
-        std::string tmp1=this->get(10784);
         compaction();
         count++;
-        std::string tmp2=this->get(10784);
-//        if(tmp1 != tmp2){
-//            int a = 10;
-//        }
         memTable.put(key, s);
     }
 }
@@ -126,10 +118,10 @@ bool KVStore::del(uint64_t key)
     if(retVal=="~DELETED~") retVal="";
     if(retVal.empty()) return false;
 
-//    if(!memTable.del(key)){
-//        put(key, "~DELETED~");
-//    }
-    put(key, "~DELETED~");
+    if(!memTable.del(key)){
+        put(key, "~DELETED~");
+    }
+//    put(key, "~DELETED~");
     return true;
 }
 
@@ -173,7 +165,7 @@ void KVStore::compaction() {
     if(storage[0]->size() < 3)
         return;
     else{// storage[0]->size == 3
-        std::vector<Range> range, range2;
+        Range range, range2;
         std::vector<std::vector<CompactionNode*>> nodes;
         range = storage[0]->getNodes_0(nodes);
         uint32_t level = 1;
@@ -185,6 +177,6 @@ void KVStore::compaction() {
             range2 = storage[level]->getNodes_k(nodes, range, level);
             range = range2;
             level++;
-        }while(!range.empty());
+        }while(range.valid());
     }
 }

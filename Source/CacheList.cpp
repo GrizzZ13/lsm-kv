@@ -8,6 +8,15 @@
 #include <fstream>
 #include <iostream>
 
+Range getRange(const std::vector<Range> &range_vec){
+    uint64_t max = 0, min = 0xffffffffffffffff;
+    for(auto &itr: range_vec){
+        max = (max > itr.maxKey) ? max : itr.maxKey;
+        min = (min < itr.minKey) ? min : itr.minKey;
+    }
+    return Range(max, min);
+}
+
 Cache::Cache() {
     pairs = nullptr;
     next = nullptr;
@@ -256,9 +265,9 @@ void CacheList::clear() {
     head->next = nullptr;
 }
 
-std::vector<Range> CacheList::getNodes_0(std::vector<std::vector<CompactionNode*>> &nodes) {
-    std::vector<Range> range;
-    if(size()<3) return range;
+Range CacheList::getNodes_0(std::vector<std::vector<CompactionNode*>> &nodes) {
+    std::vector<Range> range_vec;
+    if(size()<3) return Range();
     Cache *tmp = head->next;
     std::ifstream ifs;
     uint32_t size, beg, end;
@@ -280,7 +289,7 @@ std::vector<Range> CacheList::getNodes_0(std::vector<std::vector<CompactionNode*
         // free memory
         delete [] str;
         // update range
-        range.emplace_back(tmp->maxKey, tmp->minKey);
+        range_vec.emplace_back(tmp->maxKey, tmp->minKey);
         // delete the compacting file
         utils::rmfile(tmp->path.c_str());
 
@@ -306,18 +315,15 @@ std::vector<Range> CacheList::getNodes_0(std::vector<std::vector<CompactionNode*
         // update nodes
         nodes.push_back(a);
 
-        // version 2 //
-
-
         // update tmp pointer
         tmp = tmp->next;
     }
     clear();
-    return range;
+    return getRange(range_vec);
 }
 
-std::vector<Range> CacheList::getNodes_k(std::vector<std::vector<CompactionNode*>> &nodes,
-                                         const std::vector<Range> &range, uint32_t level) {
+Range CacheList::getNodes_k(std::vector<std::vector<CompactionNode*>> &nodes,
+                                         const Range &range, uint32_t level) {
     bool lastLevel;
     std::string dir = "./data/level-" + std::to_string(level);
     std::string last_level_dir = "./data/level-" + std::to_string(level+1);
@@ -338,7 +344,7 @@ std::vector<Range> CacheList::getNodes_k(std::vector<std::vector<CompactionNode*
     std::ifstream ifs;
     uint32_t size, beg, end;
     while(tmp_2){
-        if(inRange(range, tmp_2->maxKey, tmp_2->minKey)){
+        if(!(tmp_2->maxKey < range.minKey || tmp_2->minKey >range.maxKey)){
             ifs.open(tmp_2->path);
             // end of file
             ifs.seekg(0, std::ios::end);
@@ -424,12 +430,14 @@ std::vector<Range> CacheList::getNodes_k(std::vector<std::vector<CompactionNode*
     // the old node array elements have been deleted, only nullptr remains
     nodes.clear();
     // cache index
-    if(this->size() <= levelMaxSize) return range2;
+    if(this->size() <= levelMaxSize){
+        return getRange(range2);
+    }
     // first valid cache
     tmp_1 = head;
     std::vector<CompactionNode*> compactionNodes;
     // 注释掉之后会选取所有结点的进行compaction
-//    for (uint32_t i=0;i<levelMaxSize;++i) tmp_1 = tmp_1->next;
+    for (uint32_t i=0;i<levelMaxSize;++i) tmp_1 = tmp_1->next;
 
     ////////////////////////////////////////////////////////////////////////////////
     while(tmp_1->next){
@@ -478,10 +486,11 @@ std::vector<Range> CacheList::getNodes_k(std::vector<std::vector<CompactionNode*
         tmp_1->next = tmp_2->next;
         delete tmp_2;
     }
-    return range2;
+    return getRange(range2);
 }
 
 bool CacheList::inRange(const std::vector<Range> &range, uint64_t max, uint64_t min) {
+    uint64_t tmp_max = 0, tmp_min = 0xffffffffffffffff;
     for(auto &itr : range){
         if((max>=itr.minKey && max<=itr.maxKey)||(min>=itr.minKey && min<=itr.maxKey))
             return true;
@@ -506,66 +515,63 @@ std::vector<CompactionNode*> CacheList::MergeTwo(std::vector<CompactionNode*> &A
         CompactionNode *tmp1, *tmp2;
         if(A[i]->key < B[j]->key)
         {
-            if(A[i]->key==10784){
-                tmp1 = A[i];
-            }
+//            if(A[i]->key==10784){
+//                tmp1 = A[i];
+//            }
             tmp.push_back(A[i++]);
         }
         else if(A[i]->key > B[j]->key)
         {
-            if(B[j]->key==10784){
-                tmp2 = B[j];
-            }
+//            if(B[j]->key==10784){
+//                tmp2 = B[j];
+//            }
             tmp.push_back(B[j++]);
         }
         else{
             if(A[i]->timestamp > B[j]->timestamp){
-                if(A[i]->key==10784){
-                    tmp1 = A[i];
-                }
+//                if(A[i]->key==10784){
+//                    tmp1 = A[i];
+//                }
                 tmp.push_back(A[i++]);
                 delete B[j++];
             }
             else if(A[i]->timestamp < B[j]->timestamp){
-                if(B[j]->key==10784){
-                    tmp2 = B[j];
-                }
+//                if(B[j]->key==10784){
+//                    tmp2 = B[j];
+//                }
                 tmp.push_back(B[j++]);
                 delete A[i++];
             }
             else{
                 if(A[i]->pos==UP && B[j]->pos==DOWN){
-                    if(A[i]->key==10784){
-                        tmp1 = A[i];
-                    }
+//                    if(A[i]->key==10784){
+//                        tmp1 = A[i];
+//                    }
                     tmp.push_back(A[i++]);
                     delete B[j++];
                 }
                 else if(A[i]->pos==DOWN && B[j]->pos==UP){
-                    if(B[j]->key==10784){
-                        tmp2 = B[j];
-                    }
+//                    if(B[j]->key==10784){
+//                        tmp2 = B[j];
+//                    }
                     tmp.push_back(B[j++]);
                     delete A[i++];
-                }
-                else{
-                    int err = 10086;
                 }
             }
         }
     }
     while(i<A.size()) {
         CompactionNode *tmp1;
-        if(A[i]->key==10784){
-            tmp1 = A[i];
-        }
+//        if(A[i]->key==10784){
+//            tmp1 = A[i];
+//        }
         tmp.push_back(A[i++]);
     }
     while(j<B.size()) {
         CompactionNode *tmp2;
-        if(B[j]->key==10784){
-            tmp2 = B[j];
-        }
+//        if(B[j]->key==10784){
+//            tmp2 = B[j];
+//        }
         tmp.push_back(B[j++]);
     }
     return tmp;
@@ -575,26 +581,26 @@ void CacheList::splitNodes(std::vector<CompactionNode *> &sorted, uint32_t level
     std::vector<SSTable*> SSTables = getSSTables(sorted);
     std::string dir = "./data/level-" + std::to_string(level) + "/";
     std::string filename, path;
-//    for (auto & SSTable : SSTables) {
-//        // add cache
-//        filename = std::to_string(nextFileIndex) + ".sst";
-//        path = dir + filename;
-//        AddCache(path, *SSTable);
-//        // write to files
-//        SSTable->writeToFile(path.c_str());
-//        // delete SSTables in memory
-//        delete SSTable;
-//    }
-    for (int i = (int)(SSTables.size()-1); i >=0; --i) {
+    for (auto & SSTable : SSTables) {
         // add cache
         filename = std::to_string(nextFileIndex) + ".sst";
         path = dir + filename;
-        AddCache(path, *SSTables[i]);
+        AddCache(path, *SSTable);
         // write to files
-        SSTables[i]->writeToFile(path.c_str());
+        SSTable->writeToFile(path.c_str());
         // delete SSTables in memory
-        delete SSTables[i];
+        delete SSTable;
     }
+//    for (int i = (int)(SSTables.size()-1); i >=0; --i) {
+//        // add cache
+//        filename = std::to_string(nextFileIndex) + ".sst";
+//        path = dir + filename;
+//        AddCache(path, *SSTables[i]);
+//        // write to files
+//        SSTables[i]->writeToFile(path.c_str());
+//        // delete SSTables in memory
+//        delete SSTables[i];
+//    }
 }
 
 std::vector<SSTable*> CacheList::getSSTables(std::vector<CompactionNode*> &sorted) {

@@ -58,7 +58,18 @@ struct Range{
         maxKey = max;
         minKey = min;
     }
+
+    Range(){
+        maxKey = 0;
+        minKey = 0xffffffffffffffff;
+    }
+
+    bool valid(){
+        return !(maxKey==0 && minKey==0xffffffffffffffff);
+    }
 };
+
+Range getRange(const std::vector<Range> &range_vec);
 
 class CacheList {
 private:
@@ -89,12 +100,17 @@ public:
     uint64_t getNextFileIndex() const;
 
     // for level-0 CacheList, return Range and nodes to be compacted
-    std::vector<Range> getNodes_0(std::vector<std::vector<CompactionNode*>> &nodes);
+//    std::vector<Range> getNodes_0(std::vector<std::vector<CompactionNode*>> &nodes);
+
+    Range getNodes_0(std::vector<std::vector<CompactionNode*>> &nodes);
+
+    Range getNodes_k(std::vector<std::vector<CompactionNode*>> &nodes,
+                                  const Range &range, uint32_t level);
 
     // for level-k CacheList, input higher level's compacting cache's range and level index
     // return Range(empty if unnecessary) and nodes to be compacted(empty if unnecessary)
-    std::vector<Range> getNodes_k(std::vector<std::vector<CompactionNode*>> &nodes,
-                                  const std::vector<Range> &range, uint32_t level);
+//    std::vector<Range> getNodes_k(std::vector<std::vector<CompactionNode*>> &nodes,
+//                                  const std::vector<Range> &range, uint32_t level);
 
     bool inRange(const std::vector<Range> &range, uint64_t max, uint64_t min);
 
