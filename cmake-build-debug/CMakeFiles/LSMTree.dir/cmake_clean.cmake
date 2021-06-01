@@ -6,7 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/LSMTree.dir/Source/SSTable.cpp.obj"
   "CMakeFiles/LSMTree.dir/Source/SkipList.cpp.obj"
   "CMakeFiles/LSMTree.dir/Source/kvstore.cpp.obj"
-  "CMakeFiles/LSMTree.dir/Test/persistence.cc.obj"
+  "CMakeFiles/LSMTree.dir/Test/main.cpp.obj"
   "LSMTree.exe"
   "LSMTree.exe.manifest"
   "LSMTree.pdb"

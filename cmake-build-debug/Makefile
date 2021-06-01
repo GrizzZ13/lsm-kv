@@ -330,32 +330,32 @@ Source/kvstore.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/kvstore.cpp.s
 .PHONY : Source/kvstore.cpp.s
 
-Test/persistence.obj: Test/persistence.cc.obj
+Test/main.obj: Test/main.cpp.obj
 
-.PHONY : Test/persistence.obj
+.PHONY : Test/main.obj
 
 # target to build an object file
-Test/persistence.cc.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Test/persistence.cc.obj
-.PHONY : Test/persistence.cc.obj
+Test/main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Test/main.cpp.obj
+.PHONY : Test/main.cpp.obj
 
-Test/persistence.i: Test/persistence.cc.i
+Test/main.i: Test/main.cpp.i
 
-.PHONY : Test/persistence.i
+.PHONY : Test/main.i
 
 # target to preprocess a source file
-Test/persistence.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Test/persistence.cc.i
-.PHONY : Test/persistence.cc.i
+Test/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Test/main.cpp.i
+.PHONY : Test/main.cpp.i
 
-Test/persistence.s: Test/persistence.cc.s
+Test/main.s: Test/main.cpp.s
 
-.PHONY : Test/persistence.s
+.PHONY : Test/main.s
 
 # target to generate assembly for a file
-Test/persistence.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Test/persistence.cc.s
-.PHONY : Test/persistence.cc.s
+Test/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Test/main.cpp.s
+.PHONY : Test/main.cpp.s
 
 # Help Target
 help:
@@ -387,9 +387,9 @@ help:
 	@echo ... Source/kvstore.obj
 	@echo ... Source/kvstore.i
 	@echo ... Source/kvstore.s
-	@echo ... Test/persistence.obj
-	@echo ... Test/persistence.i
-	@echo ... Test/persistence.s
+	@echo ... Test/main.obj
+	@echo ... Test/main.i
+	@echo ... Test/main.s
 .PHONY : help
 
 
