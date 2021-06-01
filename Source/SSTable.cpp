@@ -77,14 +77,12 @@ SSTable::SSTable(std::vector<CompactionNode*> &sorted, uint64_t start, uint64_t 
     // timestamp hasn't been set yet
     count = end-start;
     pairs = new Pair[count];
-    minKey = 0xffffffffffffffff;
-    maxKey = 0;
+    minKey = sorted[start]->key;
+    maxKey = sorted[end-1]->key;
     uint32_t accumulation = 0;
     uint32_t overhead = 10272 + 12 * count;
     for(uint64_t i = start; i < end; ++i) {
         CompactionNode *tmp = sorted[i];
-        minKey = (minKey < tmp->key) ? minKey : tmp->key;
-        maxKey = (maxKey > tmp->key) ? maxKey : tmp->key;
         bf.setKey(tmp->key);
         pairs[i-start].key = tmp->key;
         pairs[i-start].offset = overhead + accumulation;

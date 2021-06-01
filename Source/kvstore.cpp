@@ -17,7 +17,6 @@ KVStore::KVStore(const std::string &dir): KVStoreAPI(dir)
     uint32_t size = dir_name.size();
     for (uint32_t i = 0; i < size; ++i) {
         subpath = dir + "/level-" + std::to_string(i);
-        std::cout << subpath << std::endl;
         CacheList* cacheList_tmp = new CacheList(subpath, maxts);
         storage.push_back(cacheList_tmp);
     }
@@ -69,12 +68,23 @@ void KVStore::writeToDisk() {
  */
 void KVStore::put(uint64_t key, const std::string &s)
 {
+    static int count=1;
     if(memTable.put(key, s))
         return;
     else{
         /* more than 2MB */
+
         writeToDisk();
+        if(count ==285){
+            int a = 10;
+        }
+        std::string tmp1=this->get(10784);
         compaction();
+        count++;
+        std::string tmp2=this->get(10784);
+//        if(tmp1 != tmp2){
+//            int a = 10;
+//        }
         memTable.put(key, s);
     }
 }
@@ -91,7 +101,8 @@ std::string KVStore::get(uint64_t key)
     /* not found in memTable */
     if(retVal.empty()){
         for(auto & itr : storage){
-            itr->get(key, timestamp, retVal);
+            bool tmp = itr->get_2(key, timestamp, retVal);
+            if(tmp) break;
         }
     }
     if(retVal=="~DELETED~") retVal="";
@@ -115,9 +126,10 @@ bool KVStore::del(uint64_t key)
     if(retVal=="~DELETED~") retVal="";
     if(retVal.empty()) return false;
 
-    if(!memTable.del(key)){
-        put(key, "~DELETED~");
-    }
+//    if(!memTable.del(key)){
+//        put(key, "~DELETED~");
+//    }
+    put(key, "~DELETED~");
     return true;
 }
 
@@ -161,7 +173,7 @@ void KVStore::compaction() {
     if(storage[0]->size() < 3)
         return;
     else{// storage[0]->size == 3
-        std::vector<Range> range;
+        std::vector<Range> range, range2;
         std::vector<std::vector<CompactionNode*>> nodes;
         range = storage[0]->getNodes_0(nodes);
         uint32_t level = 1;
@@ -170,7 +182,8 @@ void KVStore::compaction() {
                 CacheList *tmp = new CacheList();
                 storage.push_back(tmp);
             }
-            range = storage[level]->getNodes_k(nodes, range, level);
+            range2 = storage[level]->getNodes_k(nodes, range, level);
+            range = range2;
             level++;
         }while(!range.empty());
     }

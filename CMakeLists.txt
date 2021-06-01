@@ -31,9 +31,10 @@ file(GLOB SOURCES
         Header/CacheList.h
 #===========================Test==========================#
         Test/test.h
-#        Test/main.cpp
+        Test/main.cpp
 #        Test/correctness.cc
-        Test/persistence.cc
+#        Test/persistence.cc
+#        Test/ts_test.cpp
         )
 
-add_executable(LSMTree Test/persistence.cc ${SOURCE_FILES} ${SOURCES})
+add_executable(LSMTree Test/main.cpp ${SOURCE_FILES} ${SOURCES})

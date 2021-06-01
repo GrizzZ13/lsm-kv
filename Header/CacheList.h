@@ -40,6 +40,8 @@ struct Cache {
     /* update return value and timestamp if key exists and timestamp is newer */
     void get(uint64_t key, uint64_t &ts, std::string &ret) const;
 
+    bool get_2(uint64_t key, uint64_t &ts, std::string &ret) const;
+
     uint64_t getTimeStamp() const;
 
     Pair* binarySearch(Pair* begin, uint64_t key, uint64_t size) const;
@@ -78,6 +80,8 @@ public:
 
     void get(uint64_t key, uint64_t &ts, std::string &ret) const;
 
+    bool get_2(uint64_t key, uint64_t &ts, std::string &ret) const;
+
     void delAllFiles();
 
     uint32_t size() const;
@@ -98,9 +102,9 @@ public:
 
     // sort [start, end]
     std::vector<CompactionNode*> MergeSort(std::vector<std::vector<CompactionNode*>> &A,
-                                           uint64_t start, uint64_t end, bool lestLevel);
+                                           uint64_t start, uint64_t end);
 
-    std::vector<CompactionNode*> MergeTwo(std::vector<CompactionNode*> &A, std::vector<CompactionNode*> &B, bool lastLevel);
+    std::vector<CompactionNode*> MergeTwo(std::vector<CompactionNode*> &A, std::vector<CompactionNode*> &B);
 
     // split compaction nodes, write to files and add caches to cachelist
     void splitNodes(std::vector<CompactionNode*> &sorted, uint32_t level);
