@@ -45,7 +45,7 @@ CMakeFiles/LSMTree.dir/Source/kvstore.cpp.obj
  E:/Workspace_CLion/LSMTree/Header/kvstore_api.h
  E:/Workspace_CLion/LSMTree/Header/utils.h
  E:/Workspace_CLion/LSMTree/Source/kvstore.cpp
-CMakeFiles/LSMTree.dir/Test/main.cpp.obj
+CMakeFiles/LSMTree.dir/Test/latency2.cpp.obj
  E:/Workspace_CLion/LSMTree/Header/BloomFilter.h
  E:/Workspace_CLion/LSMTree/Header/CacheList.h
  E:/Workspace_CLion/LSMTree/Header/CompactionNode.h
@@ -54,5 +54,5 @@ CMakeFiles/LSMTree.dir/Test/main.cpp.obj
  E:/Workspace_CLion/LSMTree/Header/SkipList.h
  E:/Workspace_CLion/LSMTree/Header/kvstore.h
  E:/Workspace_CLion/LSMTree/Header/kvstore_api.h
- E:/Workspace_CLion/LSMTree/Test/main.cpp
+ E:/Workspace_CLion/LSMTree/Test/latency2.cpp
  E:/Workspace_CLion/LSMTree/Test/test.h

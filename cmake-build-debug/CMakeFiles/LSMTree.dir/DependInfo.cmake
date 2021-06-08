@@ -11,7 +11,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "E:/Workspace_CLion/LSMTree/Source/SSTable.cpp" "E:/Workspace_CLion/LSMTree/cmake-build-debug/CMakeFiles/LSMTree.dir/Source/SSTable.cpp.obj"
   "E:/Workspace_CLion/LSMTree/Source/SkipList.cpp" "E:/Workspace_CLion/LSMTree/cmake-build-debug/CMakeFiles/LSMTree.dir/Source/SkipList.cpp.obj"
   "E:/Workspace_CLion/LSMTree/Source/kvstore.cpp" "E:/Workspace_CLion/LSMTree/cmake-build-debug/CMakeFiles/LSMTree.dir/Source/kvstore.cpp.obj"
-  "E:/Workspace_CLion/LSMTree/Test/main.cpp" "E:/Workspace_CLion/LSMTree/cmake-build-debug/CMakeFiles/LSMTree.dir/Test/main.cpp.obj"
+  "E:/Workspace_CLion/LSMTree/Test/latency2.cpp" "E:/Workspace_CLion/LSMTree/cmake-build-debug/CMakeFiles/LSMTree.dir/Test/latency2.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

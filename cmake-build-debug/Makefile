@@ -330,32 +330,32 @@ Source/kvstore.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Source/kvstore.cpp.s
 .PHONY : Source/kvstore.cpp.s
 
-Test/main.obj: Test/main.cpp.obj
+Test/latency2.obj: Test/latency2.cpp.obj
 
-.PHONY : Test/main.obj
+.PHONY : Test/latency2.obj
 
 # target to build an object file
-Test/main.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Test/main.cpp.obj
-.PHONY : Test/main.cpp.obj
+Test/latency2.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Test/latency2.cpp.obj
+.PHONY : Test/latency2.cpp.obj
 
-Test/main.i: Test/main.cpp.i
+Test/latency2.i: Test/latency2.cpp.i
 
-.PHONY : Test/main.i
+.PHONY : Test/latency2.i
 
 # target to preprocess a source file
-Test/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Test/main.cpp.i
-.PHONY : Test/main.cpp.i
+Test/latency2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Test/latency2.cpp.i
+.PHONY : Test/latency2.cpp.i
 
-Test/main.s: Test/main.cpp.s
+Test/latency2.s: Test/latency2.cpp.s
 
-.PHONY : Test/main.s
+.PHONY : Test/latency2.s
 
 # target to generate assembly for a file
-Test/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Test/main.cpp.s
-.PHONY : Test/main.cpp.s
+Test/latency2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LSMTree.dir\build.make CMakeFiles/LSMTree.dir/Test/latency2.cpp.s
+.PHONY : Test/latency2.cpp.s
 
 # Help Target
 help:
@@ -387,9 +387,9 @@ help:
 	@echo ... Source/kvstore.obj
 	@echo ... Source/kvstore.i
 	@echo ... Source/kvstore.s
-	@echo ... Test/main.obj
-	@echo ... Test/main.i
-	@echo ... Test/main.s
+	@echo ... Test/latency2.obj
+	@echo ... Test/latency2.i
+	@echo ... Test/latency2.s
 .PHONY : help
 
 
