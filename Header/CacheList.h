@@ -38,7 +38,11 @@ struct Cache {
     ~Cache();
 
     /* update return value and timestamp if key exists and timestamp is newer */
-    void get(uint64_t key, uint64_t &ts, std::string &ret) const;
+//    void get(uint64_t key, uint64_t &ts, std::string &ret) const;
+
+    bool get(uint64_t key, uint64_t &ts, std::string &ret) const;
+
+    bool get_1(uint64_t key, uint64_t &ts, std::string &ret) const;
 
     bool get_2(uint64_t key, uint64_t &ts, std::string &ret) const;
 
@@ -89,7 +93,11 @@ public:
     // add cache and return its timestamp
     uint64_t AddCache(const std::string &path);
 
-    void get(uint64_t key, uint64_t &ts, std::string &ret) const;
+//    void get(uint64_t key, uint64_t &ts, std::string &ret) const;
+
+    bool get(uint64_t key, uint64_t &ts, std::string &ret) const;
+
+    bool get_1(uint64_t key, uint64_t &ts, std::string &ret) const;
 
     bool get_2(uint64_t key, uint64_t &ts, std::string &ret) const;
 

@@ -93,7 +93,7 @@ std::string KVStore::get(uint64_t key)
     /* not found in memTable */
     if(retVal.empty()){
         for(auto & itr : storage){
-            bool tmp = itr->get_2(key, timestamp, retVal);
+            bool tmp = itr->get(key, timestamp, retVal);
             if(tmp) break;
         }
     }
@@ -179,4 +179,36 @@ void KVStore::compaction() {
             level++;
         }while(range.valid());
     }
+}
+
+std::string KVStore::get_1(uint64_t key) {
+    std::string retVal = memTable.get(key);
+    if(retVal=="~DELETED~") return "";
+
+    uint64_t timestamp = 0;
+    /* not found in memTable */
+    if(retVal.empty()){
+        for(auto & itr : storage){
+            bool tmp = itr->get_1(key, timestamp, retVal);
+            if(tmp) break;
+        }
+    }
+    if(retVal=="~DELETED~") retVal="";
+    return retVal;
+}
+
+std::string KVStore::get_2(uint64_t key) {
+    std::string retVal = memTable.get(key);
+    if(retVal=="~DELETED~") return "";
+
+    uint64_t timestamp = 0;
+    /* not found in memTable */
+    if(retVal.empty()){
+        for(auto & itr : storage){
+            bool tmp = itr->get_2(key, timestamp, retVal);
+            if(tmp) break;
+        }
+    }
+    if(retVal=="~DELETED~") retVal="";
+    return retVal;
 }

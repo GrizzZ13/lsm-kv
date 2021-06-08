@@ -27,6 +27,10 @@ public:
 
 	void reset() override;
 
+	std::string get_1(uint64_t key);
+
+	std::string get_2(uint64_t key);
+
 	// write from memory to disk and clear sstable and memory table
 	void writeToDisk();
 

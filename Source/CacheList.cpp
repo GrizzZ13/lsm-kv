@@ -61,15 +61,53 @@ Cache::~Cache() {
     if(pairs != nullptr) delete [] pairs;
 }
 
-void Cache::get(uint64_t key, uint64_t &ts, std::string &ret) const {
+//void Cache::get(uint64_t key, uint64_t &ts, std::string &ret) const {
+//    /* this.timestamp is older */
+//    if(timestamp <= ts) return;
+//
+//    /* key does not exist */
+//    if(key > maxKey || key < minKey) return;
+//    if(!bf.matchKey(key)) return;
+//    Pair* target = binarySearch(pairs, key, count);
+//    if(target == nullptr) return;
+//
+//    /* key exists */
+//    uint32_t size, beg, end;
+//
+//    std::ifstream ifs(path, std::ios::in|std::ios::binary);
+//    if(target == pairs+count-1){ /* the last element */
+//        ifs.seekg(0, std::ios::end);
+//        end = ifs.tellg();
+//    }
+//    else{
+//        ifs.seekg((target+1)->offset, std::ios::beg);
+//        end = ifs.tellg();
+//    }
+//    ifs.seekg(target->offset, std::ios::beg);
+//    beg = ifs.tellg();
+//    size = end - beg;
+//    char *str = new char[size+1];
+//    memset(str, '\0', size+1);
+//    ifs.read(str, size);
+//    ifs.close(); /* close file */
+//
+//    /* update ret */
+//    ret = str;
+//    /* update timestamp */
+//    ts = timestamp;
+//
+//    delete [] str;
+//}
+
+bool Cache::get(uint64_t key, uint64_t &ts, std::string &ret) const {
     /* this.timestamp is older */
-    if(timestamp <= ts) return;
+    if(timestamp <= ts) return false;
 
     /* key does not exist */
-    if(key > maxKey || key < minKey) return;
-    if(!bf.matchKey(key)) return;
+    if(key > maxKey || key < minKey) return false;
+    if(!bf.matchKey(key)) return false;
     Pair* target = binarySearch(pairs, key, count);
-    if(target == nullptr) return;
+    if(target == nullptr) return false;
 
     /* key exists */
     uint32_t size, beg, end;
@@ -97,15 +135,74 @@ void Cache::get(uint64_t key, uint64_t &ts, std::string &ret) const {
     ts = timestamp;
 
     delete [] str;
+    return true;
+}
+
+bool Cache::get_1(uint64_t key, uint64_t &ts, std::string &ret) const {
+    ///////////////////////////////////////////////////////////////////
+    ///// no information concerned about sstable stored in memory /////
+    std::ifstream tmp_ifs;
+    uint64_t tmp_count;
+    tmp_ifs.open(path, std::ios::in | std::ios::binary);
+
+    tmp_ifs.seekg(8, std::ios::beg);
+    tmp_ifs.read((char*)&count, 8);
+
+    tmp_ifs.seekg(10272, std::ios::beg);
+    /* key and offset */
+    Pair *tmp_pairs = new Pair[count];
+    for (int i = 0; i < count; ++i) {
+        tmp_pairs[i].readFromFile(tmp_ifs);
+    }
+    tmp_ifs.close();
+    /* this.timestamp is older */
+    if(timestamp <= ts) {
+        delete [] tmp_pairs;
+        return false;
+    }
+    ////////////////////////////////////////////////////////////////////
+
+    Pair* target = binarySearch(tmp_pairs, key, count);
+    if(target == nullptr) {
+        delete [] tmp_pairs;
+        return false;
+    }
+
+    /* key exists */
+    uint32_t size, beg, end;
+
+    std::ifstream ifs(path, std::ios::in|std::ios::binary);
+    if(target == pairs+count-1){ /* the last element */
+        ifs.seekg(0, std::ios::end);
+        end = ifs.tellg();
+    }
+    else{
+        ifs.seekg((target+1)->offset, std::ios::beg);
+        end = ifs.tellg();
+    }
+    ifs.seekg(target->offset, std::ios::beg);
+    beg = ifs.tellg();
+    size = end - beg;
+    char *str = new char[size+1];
+    memset(str, '\0', size+1);
+    ifs.read(str, size);
+    ifs.close(); /* close file */
+
+    /* update ret */
+    ret = str;
+    /* update timestamp */
+    ts = timestamp;
+
+    delete [] str;
+    delete [] tmp_pairs;
+    return true;
 }
 
 bool Cache::get_2(uint64_t key, uint64_t &ts, std::string &ret) const {
+    /* only index is stored in sstable */
+    /* this.timestamp is older */
     /* this.timestamp is older */
     if(timestamp <= ts) return false;
-
-    /* key does not exist */
-    if(key > maxKey || key < minKey) return false;
-    if(!bf.matchKey(key)) return false;
     Pair* target = binarySearch(pairs, key, count);
     if(target == nullptr) return false;
 
@@ -213,12 +310,34 @@ uint64_t CacheList::AddCache(const std::string &str) {
     return tmp->getTimeStamp();
 }
 
-void CacheList::get(uint64_t key, uint64_t &ts, std::string &ret) const {
+//void CacheList::get(uint64_t key, uint64_t &ts, std::string &ret) const {
+//    Cache *ptr = head->next; /* traversal pointer */
+//    while(ptr){
+//        ptr->get(key, ts, ret);
+//        ptr = ptr->next;
+//    }
+//}
+
+bool CacheList::get(uint64_t key, uint64_t &ts, std::string &ret) const {
+    bool ret_bool = false;
     Cache *ptr = head->next; /* traversal pointer */
     while(ptr){
-        ptr->get(key, ts, ret);
+        bool tmp = ptr->get(key, ts, ret);
+        ret_bool = tmp || ret_bool;
         ptr = ptr->next;
     }
+    return ret_bool;
+}
+
+bool CacheList::get_1(uint64_t key, uint64_t &ts, std::string &ret) const {
+    bool ret_bool = false;
+    Cache *ptr = head->next; /* traversal pointer */
+    while(ptr){
+        bool tmp = ptr->get_1(key, ts, ret);
+        ret_bool = tmp || ret_bool;
+        ptr = ptr->next;
+    }
+    return ret_bool;
 }
 
 bool CacheList::get_2(uint64_t key, uint64_t &ts, std::string &ret) const {
